@@ -10,6 +10,7 @@
 		EBB3AF261EC6904800FBF499 /* Pins.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB3AF1C1EC6904800FBF499 /* Pins.framework */; };
 		EBB3AF2B1EC6904800FBF499 /* PinsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB3AF2A1EC6904800FBF499 /* PinsTests.swift */; };
 		EBB3AF2D1EC6904800FBF499 /* Pins.h in Headers */ = {isa = PBXBuildFile; fileRef = EBB3AF1F1EC6904800FBF499 /* Pins.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EBB3AF371EC6908400FBF499 /* UIView+Pins.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB3AF361EC6908400FBF499 /* UIView+Pins.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		EBB3AF251EC6904800FBF499 /* PinsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PinsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBB3AF2A1EC6904800FBF499 /* PinsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinsTests.swift; sourceTree = "<group>"; };
 		EBB3AF2C1EC6904800FBF499 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EBB3AF361EC6908400FBF499 /* UIView+Pins.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Pins.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			children = (
 				EBB3AF1F1EC6904800FBF499 /* Pins.h */,
 				EBB3AF201EC6904800FBF499 /* Info.plist */,
+				EBB3AF361EC6908400FBF499 /* UIView+Pins.swift */,
 			);
 			path = Pins;
 			sourceTree = "<group>";
@@ -149,6 +152,7 @@
 					EBB3AF1B1EC6904800FBF499 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = RPD2X3YNDL;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					EBB3AF241EC6904800FBF499 = {
@@ -198,6 +202,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBB3AF371EC6908400FBF499 /* UIView+Pins.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +329,7 @@
 		EBB3AF311EC6904800FBF499 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = RPD2X3YNDL;
@@ -336,6 +342,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Pins;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -343,6 +350,7 @@
 		EBB3AF321EC6904800FBF499 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = RPD2X3YNDL;
@@ -362,6 +370,7 @@
 		EBB3AF341EC6904800FBF499 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = RPD2X3YNDL;
 				INFOPLIST_FILE = PinsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -374,6 +383,7 @@
 		EBB3AF351EC6904800FBF499 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = RPD2X3YNDL;
 				INFOPLIST_FILE = PinsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
