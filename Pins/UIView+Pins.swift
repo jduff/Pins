@@ -85,6 +85,7 @@ public extension UIView {
         let constraint = anchor(for: edge).constraint(equalTo: anchorAttachment, constant: padding)
         constraint.isActive = true
 
+        translatesAutoresizingMaskIntoConstraints = false
         return constraint
     }
 
@@ -93,6 +94,7 @@ public extension UIView {
         let constraint = anchor(for: edge).constraint(equalTo: anchorAttachment, constant: padding)
         constraint.isActive = true
 
+        translatesAutoresizingMaskIntoConstraints = false
         return constraint
     }
 
@@ -101,6 +103,7 @@ public extension UIView {
         let constraint = anchor(for: dimension).constraint(equalTo: anchorAttachment, constant: padding)
         constraint.isActive = true
 
+        translatesAutoresizingMaskIntoConstraints = false
         return constraint
     }
 
@@ -109,6 +112,7 @@ public extension UIView {
         let constraint = anchor(for: dimension).constraint(equalToConstant: size)
         constraint.isActive = true
 
+        translatesAutoresizingMaskIntoConstraints = false
         return constraint
     }
 

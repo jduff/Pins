@@ -140,7 +140,6 @@ class PinsTests: XCTestCase {
 
     private func setupViews() {
         nestedView = UIView()
-        nestedView.translatesAutoresizingMaskIntoConstraints = false
         mainView.addSubview(nestedView)
     }
 
