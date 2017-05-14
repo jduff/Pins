@@ -21,7 +21,7 @@ nestedView.pin(leftTo: mainView.leftAnchor, topTo: mainView.topAnchor, rightTo: 
 // Pins are optional when it makes sense, 2 constraints created and activated
 nestedView.pin(leftTo: mainView.leftAnchor, topTo: nil, rightTo: mainView.rightAnchor, bottomTo: nil)
 
-// Constrain height and width, 2 constraints created and activated
+// Pin height and width, 2 constraints created and activated
 nestedView.pin(height: 20, width: 10)
 
 // Pin top with padding, 1 constraint with constant of 10 created and activated
