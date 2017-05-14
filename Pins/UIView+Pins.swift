@@ -64,16 +64,16 @@ public extension UIView {
         var constraints = [NSLayoutConstraint]()
 
         if let left = left {
-            constraints.append(leftAnchor.constraint(equalTo: left, constant: padding))
+            constraints.append(pin(.left, to: left, padding: padding))
         }
         if let top = top {
-            constraints.append(topAnchor.constraint(equalTo: top, constant: padding))
+            constraints.append(pin(.top, to: top, padding: padding))
         }
         if let right = right {
-            constraints.append(rightAnchor.constraint(equalTo: right, constant: padding))
+            constraints.append(pin(.right, to: right, padding: padding))
         }
         if let bottom = bottom {
-            constraints.append(bottomAnchor.constraint(equalTo: bottom, constant: padding))
+            constraints.append(pin(.bottom, to: bottom, padding: padding))
         }
 
         NSLayoutConstraint.activate(constraints)
@@ -117,10 +117,10 @@ public extension UIView {
         var constraints = [NSLayoutConstraint]()
 
         if let height = height {
-            constraints.append(heightAnchor.constraint(equalToConstant: height))
+            constraints.append(pin(.height, size: height))
         }
         if let width = width {
-            constraints.append(widthAnchor.constraint(equalToConstant: width))
+            constraints.append(pin(.width, size: width))
         }
 
         NSLayoutConstraint.activate(constraints)
