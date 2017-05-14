@@ -63,17 +63,17 @@ public extension UIView {
     func pin(leftTo left: NSLayoutAnchor<NSLayoutXAxisAnchor>?, topTo top: NSLayoutAnchor<NSLayoutYAxisAnchor>?, rightTo right: NSLayoutAnchor<NSLayoutXAxisAnchor>?, bottomTo bottom: NSLayoutAnchor<NSLayoutYAxisAnchor>?, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
         var constraints = [NSLayoutConstraint]()
 
-        if left != nil {
-            constraints.append(leftAnchor.constraint(equalTo: left!, constant: padding))
+        if let left = left {
+            constraints.append(leftAnchor.constraint(equalTo: left, constant: padding))
         }
-        if top != nil {
-            constraints.append(topAnchor.constraint(equalTo: top!, constant: padding))
+        if let top = top {
+            constraints.append(topAnchor.constraint(equalTo: top, constant: padding))
         }
-        if right != nil {
-            constraints.append(rightAnchor.constraint(equalTo: right!, constant: padding))
+        if let right = right {
+            constraints.append(rightAnchor.constraint(equalTo: right, constant: padding))
         }
-        if bottom != nil {
-            constraints.append(bottomAnchor.constraint(equalTo: bottom!, constant: padding))
+        if let bottom = bottom {
+            constraints.append(bottomAnchor.constraint(equalTo: bottom, constant: padding))
         }
 
         NSLayoutConstraint.activate(constraints)
@@ -116,11 +116,11 @@ public extension UIView {
     func pin(height: CGFloat?, width: CGFloat?) -> [NSLayoutConstraint] {
         var constraints = [NSLayoutConstraint]()
 
-        if height != nil {
-            constraints.append(heightAnchor.constraint(equalToConstant: height!))
+        if let height = height {
+            constraints.append(heightAnchor.constraint(equalToConstant: height))
         }
-        if width != nil {
-            constraints.append(widthAnchor.constraint(equalToConstant: width!))
+        if let width = width {
+            constraints.append(widthAnchor.constraint(equalToConstant: width))
         }
 
         NSLayoutConstraint.activate(constraints)
