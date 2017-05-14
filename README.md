@@ -15,14 +15,17 @@ github "jduff/Pins"
 ## Usage
 
 ``` swift
-// Constrain bounds, 4 constraints created and activated
+// Pin bounds, 4 constraints created and activated
 nestedView.pin(leftTo: mainView.leftAnchor, topTo: mainView.topAnchor, rightTo: mainView.rightAnchor, bottomTo: mainView.bottomAnchor)
 
-// Constraints are optional when it makes sense, 2 constraints created and activated
+// Pins are optional when it makes sense, 2 constraints created and activated
 nestedView.pin(leftTo: mainView.leftAnchor, topTo: nil, rightTo: mainView.rightAnchor, bottomTo: nil)
 
-// Constraing height and width, 2 constraints created and activated
+// Constrain height and width, 2 constraints created and activated
 nestedView.pin(height: 20, width: 10)
+
+// Pin top with padding, 1 constraint with constant of 10 created and activated
+nestedView.pin(.top, to: mainView.topAnchor, padding: 10)
 ```
 
 ## TODO
