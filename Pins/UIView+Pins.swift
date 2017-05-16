@@ -37,7 +37,6 @@ public extension UIView {
             constraints.append(pin(.bottom, to: bottom, padding: padding))
         }
 
-        NSLayoutConstraint.activate(constraints)
         return constraints
     }
 
@@ -88,7 +87,6 @@ public extension UIView {
             constraints.append(pin(.width, size: width))
         }
 
-        NSLayoutConstraint.activate(constraints)
         return constraints
     }
 
