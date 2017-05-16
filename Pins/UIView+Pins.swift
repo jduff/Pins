@@ -19,45 +19,6 @@ public enum DimensionAnchor {
 }
 
 public extension UIView {
-    private func anchor(for anchor: HorizontalAnchor) -> NSLayoutAnchor<NSLayoutXAxisAnchor> {
-        switch anchor {
-        case .leading:
-            return leadingAnchor
-        case .trailing:
-            return trailingAnchor
-        case .left:
-            return leftAnchor
-        case .right:
-            return rightAnchor
-        case .centerX:
-            return centerXAnchor
-        }
-    }
-
-    private func anchor(for anchor: VerticalAnchor) -> NSLayoutAnchor<NSLayoutYAxisAnchor> {
-        switch anchor {
-        case .top:
-            return topAnchor
-        case .bottom:
-            return bottomAnchor
-        case .centerY:
-            return centerYAnchor
-        case .firstBaseline:
-            return firstBaselineAnchor
-        case .lastBaseline:
-            return lastBaselineAnchor
-        }
-    }
-
-    private func anchor(for anchor: DimensionAnchor) -> NSLayoutDimension {
-        switch anchor {
-        case .width:
-            return widthAnchor
-        case .height:
-            return heightAnchor
-        }
-    }
-
 
     @discardableResult
     func pin(leftTo left: NSLayoutAnchor<NSLayoutXAxisAnchor>?, topTo top: NSLayoutAnchor<NSLayoutYAxisAnchor>?, rightTo right: NSLayoutAnchor<NSLayoutXAxisAnchor>?, bottomTo bottom: NSLayoutAnchor<NSLayoutYAxisAnchor>?, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
@@ -129,5 +90,44 @@ public extension UIView {
 
         NSLayoutConstraint.activate(constraints)
         return constraints
+    }
+
+    private func anchor(for anchor: HorizontalAnchor) -> NSLayoutAnchor<NSLayoutXAxisAnchor> {
+        switch anchor {
+        case .leading:
+            return leadingAnchor
+        case .trailing:
+            return trailingAnchor
+        case .left:
+            return leftAnchor
+        case .right:
+            return rightAnchor
+        case .centerX:
+            return centerXAnchor
+        }
+    }
+
+    private func anchor(for anchor: VerticalAnchor) -> NSLayoutAnchor<NSLayoutYAxisAnchor> {
+        switch anchor {
+        case .top:
+            return topAnchor
+        case .bottom:
+            return bottomAnchor
+        case .centerY:
+            return centerYAnchor
+        case .firstBaseline:
+            return firstBaselineAnchor
+        case .lastBaseline:
+            return lastBaselineAnchor
+        }
+    }
+
+    private func anchor(for anchor: DimensionAnchor) -> NSLayoutDimension {
+        switch anchor {
+        case .width:
+            return widthAnchor
+        case .height:
+            return heightAnchor
+        }
     }
 }
