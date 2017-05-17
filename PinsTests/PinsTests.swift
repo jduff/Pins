@@ -40,12 +40,10 @@ class PinsTests: XCTestCase {
         for constraint in mainView.constraints {
             XCTAssertTrue(constraint.isActive)
             XCTAssertEqual(constraint.constant, 0)
+            XCTAssertEqual(constraint.relation, .equal)
         }
 
-        XCTAssertEqual(nestedView.frame.width, CGFloat(mainViewWidth))
-        XCTAssertEqual(nestedView.frame.height, CGFloat(mainViewHeight))
-        XCTAssertEqual(nestedView.frame.origin.x, 0.0)
-        XCTAssertEqual(nestedView.frame.origin.y, 0.0)
+        XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: CGFloat(mainViewWidth), height: CGFloat(mainViewHeight)))
     }
 
     func testPinToBoundsWithPadding() {
@@ -58,12 +56,10 @@ class PinsTests: XCTestCase {
         for constraint in mainView.constraints {
             XCTAssertTrue(constraint.isActive)
             XCTAssertEqual(constraint.constant, 10)
+            XCTAssertEqual(constraint.relation, .equal)
         }
 
-        XCTAssertEqual(nestedView.frame.width, CGFloat(mainViewWidth))
-        XCTAssertEqual(nestedView.frame.height, CGFloat(mainViewHeight))
-        XCTAssertEqual(nestedView.frame.origin.x, 10.0)
-        XCTAssertEqual(nestedView.frame.origin.y, 10.0)
+        XCTAssertEqual(nestedView.frame, CGRect(x: 10, y: 10, width: CGFloat(mainViewWidth), height: CGFloat(mainViewHeight)))
     }
 
     func testPinToBoundsWithOptionals() {
@@ -76,12 +72,10 @@ class PinsTests: XCTestCase {
         for constraint in mainView.constraints {
             XCTAssertTrue(constraint.isActive)
             XCTAssertEqual(constraint.constant, 0)
+            XCTAssertEqual(constraint.relation, .equal)
         }
 
-        XCTAssertEqual(nestedView.frame.width, CGFloat(mainViewWidth))
-        XCTAssertEqual(nestedView.frame.height, 0.0)
-        XCTAssertEqual(nestedView.frame.origin.x, 0.0)
-        XCTAssertEqual(nestedView.frame.origin.y, 0.0)
+        XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: CGFloat(mainViewWidth), height: 0))
     }
 
     func testPinSize() {
@@ -94,6 +88,7 @@ class PinsTests: XCTestCase {
 
         for constraint in nestedView.constraints {
             XCTAssertTrue(constraint.isActive)
+            XCTAssertEqual(constraint.relation, .equal)
         }
 
         let widthConstraint = nestedView.constraints.first { (constraint) -> Bool in
@@ -101,13 +96,16 @@ class PinsTests: XCTestCase {
         }
 
         XCTAssertEqual(widthConstraint?.constant, 10.0)
-
+        XCTAssertEqual(widthConstraint?.firstAttribute, .width)
+        XCTAssertEqual(widthConstraint?.secondAttribute, .notAnAttribute)
 
         let heightConstraint = nestedView.constraints.first { (constraint) -> Bool in
             constraint.firstAttribute == .height
         }
 
         XCTAssertEqual(heightConstraint?.constant, 20.0)
+        XCTAssertEqual(heightConstraint?.firstAttribute, .height)
+        XCTAssertEqual(heightConstraint?.secondAttribute, .notAnAttribute)
     }
 
     func testPinSizeOptionalWidth() {
@@ -122,6 +120,11 @@ class PinsTests: XCTestCase {
 
         XCTAssertTrue(constraint.isActive)
         XCTAssertEqual(constraint.constant, 20.0)
+        XCTAssertEqual(constraint.relation, .equal)
+        XCTAssertEqual(constraint.firstAttribute, .height)
+        XCTAssertEqual(constraint.secondAttribute, .notAnAttribute)
+
+        XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 0, height: 20))
     }
 
     func testPinSizeOptionalHeight() {
@@ -136,8 +139,230 @@ class PinsTests: XCTestCase {
 
         XCTAssertTrue(constraint.isActive)
         XCTAssertEqual(constraint.constant, 10.0)
+        XCTAssertEqual(constraint.relation, .equal)
+        XCTAssertEqual(constraint.firstAttribute, .width)
+        XCTAssertEqual(constraint.secondAttribute, .notAnAttribute)
+
+        XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 10, height: 0))
     }
 
+    func testPinHorizontalAnchorLessThan() {
+        evaluateConstraints {
+            nestedView.pin(.left, lessThanOrEqualTo: mainView.leftAnchor)
+        }
+
+        XCTAssertEqual(nestedView.constraints.count, 0)
+        XCTAssertEqual(mainView.constraints.count, 1)
+
+        let constraint = mainView.constraints.first!
+
+        XCTAssertTrue(constraint.isActive)
+        XCTAssertEqual(constraint.relation, .lessThanOrEqual)
+        XCTAssertEqual(constraint.firstAttribute, .left)
+        XCTAssertEqual(constraint.secondAttribute, .left)
+
+        XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 0, height: 0))
+    }
+
+    func testPinHorizontalAnchorLessThanWithPadding() {
+        evaluateConstraints {
+            nestedView.pin(.left, lessThanOrEqualTo: mainView.leftAnchor, padding: 10)
+        }
+
+        XCTAssertEqual(nestedView.constraints.count, 0)
+        XCTAssertEqual(mainView.constraints.count, 1)
+
+        let constraint = mainView.constraints.first!
+
+        XCTAssertTrue(constraint.isActive)
+        XCTAssertEqual(constraint.relation, .lessThanOrEqual)
+        XCTAssertEqual(constraint.firstAttribute, .left)
+        XCTAssertEqual(constraint.secondAttribute, .left)
+
+        XCTAssertEqual(nestedView.frame, CGRect(x: 10, y: 0, width: 0, height: 0))
+    }
+
+    func testPinHorizontalAnchorGreaterThan() {
+        evaluateConstraints {
+            nestedView.pin(.left, greaterThanOrEqualTo: mainView.leftAnchor)
+        }
+
+        XCTAssertEqual(nestedView.constraints.count, 0)
+        XCTAssertEqual(mainView.constraints.count, 1)
+
+        let constraint = mainView.constraints.first!
+
+        XCTAssertTrue(constraint.isActive)
+        XCTAssertEqual(constraint.relation, .greaterThanOrEqual)
+        XCTAssertEqual(constraint.firstAttribute, .left)
+        XCTAssertEqual(constraint.secondAttribute, .left)
+
+        XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 0, height: 0))
+    }
+
+    func testPinHorizontalAnchorGreaterThanWithPadding() {
+        evaluateConstraints {
+            nestedView.pin(.left, greaterThanOrEqualTo: mainView.leftAnchor, padding: 10)
+        }
+
+        XCTAssertEqual(nestedView.constraints.count, 0)
+        XCTAssertEqual(mainView.constraints.count, 1)
+
+        let constraint = mainView.constraints.first!
+
+        XCTAssertTrue(constraint.isActive)
+        XCTAssertEqual(constraint.relation, .greaterThanOrEqual)
+        XCTAssertEqual(constraint.firstAttribute, .left)
+        XCTAssertEqual(constraint.secondAttribute, .left)
+
+        XCTAssertEqual(nestedView.frame, CGRect(x: 10, y: 0, width: 0, height: 0))
+    }
+
+    func testPinVerticalAnchorLessThan() {
+        evaluateConstraints {
+            nestedView.pin(.top, lessThanOrEqualTo: mainView.topAnchor)
+        }
+
+        XCTAssertEqual(nestedView.constraints.count, 0)
+        XCTAssertEqual(mainView.constraints.count, 1)
+
+        let constraint = mainView.constraints.first!
+
+        XCTAssertTrue(constraint.isActive)
+        XCTAssertEqual(constraint.relation, .lessThanOrEqual)
+        XCTAssertEqual(constraint.firstAttribute, .top)
+        XCTAssertEqual(constraint.secondAttribute, .top)
+
+        XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 0, height: 0))
+    }
+
+    func testPinVerticalAnchorLessThanWithPadding() {
+        evaluateConstraints {
+            nestedView.pin(.top, lessThanOrEqualTo: mainView.topAnchor, padding: 10)
+        }
+
+        XCTAssertEqual(nestedView.constraints.count, 0)
+        XCTAssertEqual(mainView.constraints.count, 1)
+
+        let constraint = mainView.constraints.first!
+
+        XCTAssertTrue(constraint.isActive)
+        XCTAssertEqual(constraint.relation, .lessThanOrEqual)
+        XCTAssertEqual(constraint.firstAttribute, .top)
+        XCTAssertEqual(constraint.secondAttribute, .top)
+
+        XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 10, width: 0, height: 0))
+    }
+
+    func testPinVerticalAnchorGreaterThan() {
+        evaluateConstraints {
+            nestedView.pin(.top, greaterThanOrEqualTo: mainView.topAnchor)
+        }
+
+        XCTAssertEqual(nestedView.constraints.count, 0)
+        XCTAssertEqual(mainView.constraints.count, 1)
+
+        let constraint = mainView.constraints.first!
+
+        XCTAssertTrue(constraint.isActive)
+        XCTAssertEqual(constraint.relation, .greaterThanOrEqual)
+        XCTAssertEqual(constraint.firstAttribute, .top)
+        XCTAssertEqual(constraint.secondAttribute, .top)
+
+        XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 0, height: 0))
+    }
+
+    func testPinVerticalAnchorGreaterThanWithPadding() {
+        evaluateConstraints {
+            nestedView.pin(.top, greaterThanOrEqualTo: mainView.topAnchor, padding: 10)
+        }
+
+        XCTAssertEqual(nestedView.constraints.count, 0)
+        XCTAssertEqual(mainView.constraints.count, 1)
+
+        let constraint = mainView.constraints.first!
+
+        XCTAssertTrue(constraint.isActive)
+        XCTAssertEqual(constraint.relation, .greaterThanOrEqual)
+        XCTAssertEqual(constraint.firstAttribute, .top)
+        XCTAssertEqual(constraint.secondAttribute, .top)
+
+        XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 10, width: 0, height: 0))
+    }
+
+    func testPinDimensionAnchorLessThan() {
+        evaluateConstraints {
+            nestedView.pin(.width, lessThanOrEqualTo: mainView.widthAnchor)
+        }
+
+        XCTAssertEqual(nestedView.constraints.count, 0)
+        XCTAssertEqual(mainView.constraints.count, 1)
+
+        let constraint = mainView.constraints.first!
+
+        XCTAssertTrue(constraint.isActive)
+        XCTAssertEqual(constraint.relation, .lessThanOrEqual)
+        XCTAssertEqual(constraint.firstAttribute, .width)
+        XCTAssertEqual(constraint.secondAttribute, .width)
+
+        XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 0, height: 0))
+    }
+
+    func testPinDimensionAnchorLessThanConstant() {
+        evaluateConstraints {
+            nestedView.pin(.width, lessThanOrEqualTo: 50)
+        }
+
+        XCTAssertEqual(nestedView.constraints.count, 1)
+        XCTAssertEqual(mainView.constraints.count, 0)
+
+        let constraint = nestedView.constraints.first!
+
+        XCTAssertTrue(constraint.isActive)
+        XCTAssertEqual(constraint.relation, .lessThanOrEqual)
+        XCTAssertEqual(constraint.firstAttribute, .width)
+        XCTAssertEqual(constraint.secondAttribute, .notAnAttribute)
+
+        XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 0, height: 0))
+    }
+
+    func testPinDimensionAnchorGreaterThan() {
+        evaluateConstraints {
+            nestedView.pin(.width, greaterThanOrEqualTo: mainView.widthAnchor)
+        }
+
+        XCTAssertEqual(nestedView.constraints.count, 0)
+        XCTAssertEqual(mainView.constraints.count, 1)
+
+        let constraint = mainView.constraints.first!
+
+        XCTAssertTrue(constraint.isActive)
+        XCTAssertEqual(constraint.relation, .greaterThanOrEqual)
+        XCTAssertEqual(constraint.firstAttribute, .width)
+        XCTAssertEqual(constraint.secondAttribute, .width)
+
+        XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: CGFloat(mainViewWidth), height: 0))
+    }
+
+    func testPinDimensionAnchorGreaterThanConstant() {
+        evaluateConstraints {
+            nestedView.pin(.width, greaterThanOrEqualTo: 10)
+        }
+
+        XCTAssertEqual(nestedView.constraints.count, 1)
+        XCTAssertEqual(mainView.constraints.count, 0)
+
+        let constraint = nestedView.constraints.first!
+
+        XCTAssertTrue(constraint.isActive)
+        XCTAssertEqual(constraint.relation, .greaterThanOrEqual)
+        XCTAssertEqual(constraint.firstAttribute, .width)
+        XCTAssertEqual(constraint.secondAttribute, .notAnAttribute)
+
+        XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 10, height: 0))
+    }
+
+    // MARK: Private helper methods
     private func setupViews() {
         nestedView = UIView()
         mainView.addSubview(nestedView)
