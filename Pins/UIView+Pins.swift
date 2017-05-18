@@ -69,7 +69,7 @@ public extension UIView {
         return constraints
     }
 
-    /// Pin the specified `HorizontalAnchor` of the view to another anchor. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
+    /// Pin the specified `HorizontalAnchor` of the view equal to another anchor. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
     ///
     /// - Parameters:
     ///   - edge: `HorizontalAnchor` of the caller to pin to. One of `leading`, `trailing`, `left`, `right` or `centerX`.
@@ -79,13 +79,39 @@ public extension UIView {
     @discardableResult
     func pin(_ edge: HorizontalAnchor, to anchorAttachment: NSLayoutAnchor<NSLayoutXAxisAnchor>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
         let constraint = anchor(for: edge).constraint(equalTo: anchorAttachment, constant: padding)
-        constraint.isActive = true
 
-        translatesAutoresizingMaskIntoConstraints = false
-        return constraint
+        return disableTranslatesAutoresizingMaskAndActivate(constraint)
     }
 
-    /// Pin the specified `VerticalAnchor` of the view to another view anchor. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
+    /// Pin the specified `HorizontalAnchor` of the view less than or equal to another anchor. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
+    ///
+    /// - Parameters:
+    ///   - edge: `HorizontalAnchor` of the caller to pin to. One of `leading`, `trailing`, `left`, `right` or `centerX`.
+    ///   - anchorAttachment: Anchor to pin the view to. Must be a `NSLayoutXAxisAnchor`.
+    ///   - padding: Optional padding to add between the anchors.
+    /// - Returns: The activated `NSLayoutConstraint` object that was created.
+    @discardableResult
+    func pin(_ edge: HorizontalAnchor, lessThanOrEqualTo anchorAttachment: NSLayoutAnchor<NSLayoutXAxisAnchor>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
+        let constraint = anchor(for: edge).constraint(lessThanOrEqualTo: anchorAttachment, constant: padding)
+
+        return disableTranslatesAutoresizingMaskAndActivate(constraint)
+    }
+
+    /// Pin the specified `HorizontalAnchor` of the view greater than equal to another anchor. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
+    ///
+    /// - Parameters:
+    ///   - edge: `HorizontalAnchor` of the caller to pin to. One of `leading`, `trailing`, `left`, `right` or `centerX`.
+    ///   - anchorAttachment: Anchor to pin the view to. Must be a `NSLayoutXAxisAnchor`.
+    ///   - padding: Optional padding to add between the anchors.
+    /// - Returns: The activated `NSLayoutConstraint` object that was created.
+    @discardableResult
+    func pin(_ edge: HorizontalAnchor, greaterThanOrEqualTo anchorAttachment: NSLayoutAnchor<NSLayoutXAxisAnchor>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
+        let constraint = anchor(for: edge).constraint(greaterThanOrEqualTo: anchorAttachment, constant: padding)
+
+        return disableTranslatesAutoresizingMaskAndActivate(constraint)
+    }
+
+    /// Pin the specified `VerticalAnchor` of the view equal to another anchor. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
     ///
     /// - Parameters:
     ///   - edge: `VerticalAnchor` of the caller to pin to. One of `top`, `bottom`, `centerY`, `firstBaseline` or `lastBaseline`.
@@ -95,13 +121,39 @@ public extension UIView {
     @discardableResult
     func pin(_ edge: VerticalAnchor, to anchorAttachment: NSLayoutAnchor<NSLayoutYAxisAnchor>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
         let constraint = anchor(for: edge).constraint(equalTo: anchorAttachment, constant: padding)
-        constraint.isActive = true
 
-        translatesAutoresizingMaskIntoConstraints = false
-        return constraint
+        return disableTranslatesAutoresizingMaskAndActivate(constraint)
     }
 
-    /// Pin the specified `DimensionAnchor` of the view to another view anchor. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
+    /// Pin the specified `VerticalAnchor` of the view less than or equal to another anchor. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
+    ///
+    /// - Parameters:
+    ///   - edge: `VerticalAnchor` of the caller to pin to. One of `top`, `bottom`, `centerY`, `firstBaseline` or `lastBaseline`.
+    ///   - anchorAttachment: Anchor to pin the view to. Must be a `NSLayoutYAxisAnchor`.
+    ///   - padding: Optional padding to add between the anchors.
+    /// - Returns: The activated `NSLayoutConstraint` object that was created.
+    @discardableResult
+    func pin(_ edge: VerticalAnchor, lessThanOrEqualTo anchorAttachment: NSLayoutAnchor<NSLayoutYAxisAnchor>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
+        let constraint = anchor(for: edge).constraint(lessThanOrEqualTo: anchorAttachment, constant: padding)
+
+        return disableTranslatesAutoresizingMaskAndActivate(constraint)
+    }
+
+    /// Pin the specified `VerticalAnchor` of the view greater than or equal to another anchor. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
+    ///
+    /// - Parameters:
+    ///   - edge: `VerticalAnchor` of the caller to pin to. One of `top`, `bottom`, `centerY`, `firstBaseline` or `lastBaseline`.
+    ///   - anchorAttachment: Anchor to pin the view to. Must be a `NSLayoutYAxisAnchor`.
+    ///   - padding: Optional padding to add between the anchors.
+    /// - Returns: The activated `NSLayoutConstraint` object that was created.
+    @discardableResult
+    func pin(_ edge: VerticalAnchor, greaterThanOrEqualTo anchorAttachment: NSLayoutAnchor<NSLayoutYAxisAnchor>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
+        let constraint = anchor(for: edge).constraint(greaterThanOrEqualTo: anchorAttachment, constant: padding)
+
+        return disableTranslatesAutoresizingMaskAndActivate(constraint)
+    }
+
+    /// Pin the specified `DimensionAnchor` of the view to another anchor. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
     ///
     /// - Parameters:
     ///   - dimension: `DimensionAnchor` of the caller to pin to. Either `width` or `height`.
@@ -111,25 +163,75 @@ public extension UIView {
     @discardableResult
     func pin(_ dimension: DimensionAnchor, to anchorAttachment: NSLayoutAnchor<NSLayoutDimension>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
         let constraint = anchor(for: dimension).constraint(equalTo: anchorAttachment, constant: padding)
-        constraint.isActive = true
 
-        translatesAutoresizingMaskIntoConstraints = false
-        return constraint
+        return disableTranslatesAutoresizingMaskAndActivate(constraint)
     }
 
-    /// Pin the specified `DimensionAnchor` of the view to a fixed size. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
+    /// Pin the specified `DimensionAnchor` of the view less than or equal to another anchor. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
+    ///
+    /// - Parameters:
+    ///   - dimension: `DimensionAnchor` of the caller to pin to. Either `width` or `height`.
+    ///   - anchorAttachment: Anchor to pin the view to. Must be a `NSLayoutDimension`.
+    ///   - padding: Optional padding to add between the anchors.
+    /// - Returns: The activated `NSLayoutConstraint` object that was created.
+    @discardableResult
+    func pin(_ dimension: DimensionAnchor, lessThanOrEqualTo anchorAttachment: NSLayoutAnchor<NSLayoutDimension>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
+        let constraint = anchor(for: dimension).constraint(lessThanOrEqualTo: anchorAttachment, constant: padding)
+
+        return disableTranslatesAutoresizingMaskAndActivate(constraint)
+    }
+
+    /// Pin the specified `DimensionAnchor` of the view greater than or equal to another anchor. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
+    ///
+    /// - Parameters:
+    ///   - dimension: `DimensionAnchor` of the caller to pin to. Either `width` or `height`.
+    ///   - anchorAttachment: Anchor to pin the view to. Must be a `NSLayoutDimension`.
+    ///   - padding: Optional padding to add between the anchors.
+    /// - Returns: The activated `NSLayoutConstraint` object that was created.
+    @discardableResult
+    func pin(_ dimension: DimensionAnchor, greaterThanOrEqualTo anchorAttachment: NSLayoutAnchor<NSLayoutDimension>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
+        let constraint = anchor(for: dimension).constraint(greaterThanOrEqualTo: anchorAttachment, constant: padding)
+
+        return disableTranslatesAutoresizingMaskAndActivate(constraint)
+    }
+
+    /// Pin the specified `DimensionAnchor` of the view equal to a fixed size. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
     ///
     /// - Parameters:
     ///   - dimension: `DimensionAnchor` of the caller to pin to. Either `width` or `height`.
     ///   - size: Size to pin the `DimensionAnchor` to.
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
-    func pin(_ dimension: DimensionAnchor, size: CGFloat) -> NSLayoutConstraint {
+    func pin(_ dimension: DimensionAnchor, to size: CGFloat) -> NSLayoutConstraint {
         let constraint = anchor(for: dimension).constraint(equalToConstant: size)
-        constraint.isActive = true
 
-        translatesAutoresizingMaskIntoConstraints = false
-        return constraint
+        return disableTranslatesAutoresizingMaskAndActivate(constraint)
+    }
+
+    /// Pin the specified `DimensionAnchor` of the view less than or equal to a fixed size. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
+    ///
+    /// - Parameters:
+    ///   - dimension: `DimensionAnchor` of the caller to pin to. Either `width` or `height`.
+    ///   - size: Size to pin the `DimensionAnchor` to.
+    /// - Returns: The activated `NSLayoutConstraint` object that was created.
+    @discardableResult
+    func pin(_ dimension: DimensionAnchor, lessThanOrEqualTo size: CGFloat) -> NSLayoutConstraint {
+        let constraint = anchor(for: dimension).constraint(lessThanOrEqualToConstant: size)
+
+        return disableTranslatesAutoresizingMaskAndActivate(constraint)
+    }
+
+    /// Pin the specified `DimensionAnchor` of the view greater than or equal to a fixed size. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
+    ///
+    /// - Parameters:
+    ///   - dimension: `DimensionAnchor` of the caller to pin to. Either `width` or `height`.
+    ///   - size: Size to pin the `DimensionAnchor` to.
+    /// - Returns: The activated `NSLayoutConstraint` object that was created.
+    @discardableResult
+    func pin(_ dimension: DimensionAnchor, greaterThanOrEqualTo size: CGFloat) -> NSLayoutConstraint {
+        let constraint = anchor(for: dimension).constraint(greaterThanOrEqualToConstant: size)
+
+        return disableTranslatesAutoresizingMaskAndActivate(constraint)
     }
 
     /// Pin the height and width of the view to a fixed size. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
@@ -143,10 +245,10 @@ public extension UIView {
         var constraints = [NSLayoutConstraint]()
 
         if let height = height {
-            constraints.append(pin(.height, size: height))
+            constraints.append(pin(.height, to: height))
         }
         if let width = width {
-            constraints.append(pin(.width, size: width))
+            constraints.append(pin(.width, to: width))
         }
 
         return constraints
@@ -190,5 +292,12 @@ public extension UIView {
         case .height:
             return heightAnchor
         }
+    }
+
+    private func disableTranslatesAutoresizingMaskAndActivate(_ constraint: NSLayoutConstraint) -> NSLayoutConstraint {
+        translatesAutoresizingMaskIntoConstraints = false
+        constraint.isActive = true
+
+        return constraint
     }
 }
