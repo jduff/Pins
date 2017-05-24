@@ -78,7 +78,7 @@ public extension UIView {
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
     func pin(_ edge: HorizontalAnchor, to anchorAttachment: NSLayoutAnchor<NSLayoutXAxisAnchor>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
-        let constraint = anchor(for: edge).constraint(equalTo: anchorAttachment, constant: padding)
+        let constraint = anchor(self, for: edge).constraint(equalTo: anchorAttachment, constant: padding)
 
         return disableTranslatesAutoresizingMaskAndActivate(constraint)
     }
@@ -92,7 +92,7 @@ public extension UIView {
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
     func pin(_ edge: HorizontalAnchor, lessThanOrEqualTo anchorAttachment: NSLayoutAnchor<NSLayoutXAxisAnchor>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
-        let constraint = anchor(for: edge).constraint(lessThanOrEqualTo: anchorAttachment, constant: padding)
+        let constraint = anchor(self, for: edge).constraint(lessThanOrEqualTo: anchorAttachment, constant: padding)
 
         return disableTranslatesAutoresizingMaskAndActivate(constraint)
     }
@@ -106,7 +106,7 @@ public extension UIView {
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
     func pin(_ edge: HorizontalAnchor, greaterThanOrEqualTo anchorAttachment: NSLayoutAnchor<NSLayoutXAxisAnchor>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
-        let constraint = anchor(for: edge).constraint(greaterThanOrEqualTo: anchorAttachment, constant: padding)
+        let constraint = anchor(self, for: edge).constraint(greaterThanOrEqualTo: anchorAttachment, constant: padding)
 
         return disableTranslatesAutoresizingMaskAndActivate(constraint)
     }
@@ -120,7 +120,7 @@ public extension UIView {
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
     func pin(_ edge: VerticalAnchor, to anchorAttachment: NSLayoutAnchor<NSLayoutYAxisAnchor>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
-        let constraint = anchor(for: edge).constraint(equalTo: anchorAttachment, constant: padding)
+        let constraint = anchor(self, for: edge).constraint(equalTo: anchorAttachment, constant: padding)
 
         return disableTranslatesAutoresizingMaskAndActivate(constraint)
     }
@@ -134,7 +134,7 @@ public extension UIView {
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
     func pin(_ edge: VerticalAnchor, lessThanOrEqualTo anchorAttachment: NSLayoutAnchor<NSLayoutYAxisAnchor>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
-        let constraint = anchor(for: edge).constraint(lessThanOrEqualTo: anchorAttachment, constant: padding)
+        let constraint = anchor(self, for: edge).constraint(lessThanOrEqualTo: anchorAttachment, constant: padding)
 
         return disableTranslatesAutoresizingMaskAndActivate(constraint)
     }
@@ -148,7 +148,7 @@ public extension UIView {
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
     func pin(_ edge: VerticalAnchor, greaterThanOrEqualTo anchorAttachment: NSLayoutAnchor<NSLayoutYAxisAnchor>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
-        let constraint = anchor(for: edge).constraint(greaterThanOrEqualTo: anchorAttachment, constant: padding)
+        let constraint = anchor(self, for: edge).constraint(greaterThanOrEqualTo: anchorAttachment, constant: padding)
 
         return disableTranslatesAutoresizingMaskAndActivate(constraint)
     }
@@ -162,7 +162,7 @@ public extension UIView {
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
     func pin(_ dimension: DimensionAnchor, to anchorAttachment: NSLayoutAnchor<NSLayoutDimension>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
-        let constraint = anchor(for: dimension).constraint(equalTo: anchorAttachment, constant: padding)
+        let constraint = anchor(self, for: dimension).constraint(equalTo: anchorAttachment, constant: padding)
 
         return disableTranslatesAutoresizingMaskAndActivate(constraint)
     }
@@ -176,7 +176,7 @@ public extension UIView {
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
     func pin(_ dimension: DimensionAnchor, lessThanOrEqualTo anchorAttachment: NSLayoutAnchor<NSLayoutDimension>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
-        let constraint = anchor(for: dimension).constraint(lessThanOrEqualTo: anchorAttachment, constant: padding)
+        let constraint = anchor(self, for: dimension).constraint(lessThanOrEqualTo: anchorAttachment, constant: padding)
 
         return disableTranslatesAutoresizingMaskAndActivate(constraint)
     }
@@ -190,7 +190,7 @@ public extension UIView {
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
     func pin(_ dimension: DimensionAnchor, greaterThanOrEqualTo anchorAttachment: NSLayoutAnchor<NSLayoutDimension>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
-        let constraint = anchor(for: dimension).constraint(greaterThanOrEqualTo: anchorAttachment, constant: padding)
+        let constraint = anchor(self, for: dimension).constraint(greaterThanOrEqualTo: anchorAttachment, constant: padding)
 
         return disableTranslatesAutoresizingMaskAndActivate(constraint)
     }
@@ -203,7 +203,7 @@ public extension UIView {
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
     func pin(_ dimension: DimensionAnchor, to size: CGFloat) -> NSLayoutConstraint {
-        let constraint = anchor(for: dimension).constraint(equalToConstant: size)
+        let constraint = anchor(self, for: dimension).constraint(equalToConstant: size)
 
         return disableTranslatesAutoresizingMaskAndActivate(constraint)
     }
@@ -216,7 +216,7 @@ public extension UIView {
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
     func pin(_ dimension: DimensionAnchor, lessThanOrEqualTo size: CGFloat) -> NSLayoutConstraint {
-        let constraint = anchor(for: dimension).constraint(lessThanOrEqualToConstant: size)
+        let constraint = anchor(self, for: dimension).constraint(lessThanOrEqualToConstant: size)
 
         return disableTranslatesAutoresizingMaskAndActivate(constraint)
     }
@@ -229,7 +229,7 @@ public extension UIView {
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
     func pin(_ dimension: DimensionAnchor, greaterThanOrEqualTo size: CGFloat) -> NSLayoutConstraint {
-        let constraint = anchor(for: dimension).constraint(greaterThanOrEqualToConstant: size)
+        let constraint = anchor(self, for: dimension).constraint(greaterThanOrEqualToConstant: size)
 
         return disableTranslatesAutoresizingMaskAndActivate(constraint)
     }
@@ -255,42 +255,42 @@ public extension UIView {
     }
 
     // MARK: Private helper methods.
-    private func anchor(for anchor: HorizontalAnchor) -> NSLayoutAnchor<NSLayoutXAxisAnchor> {
+    private func anchor(_ view: UIView, for anchor: HorizontalAnchor) -> NSLayoutAnchor<NSLayoutXAxisAnchor> {
         switch anchor {
         case .leading:
-            return leadingAnchor
+            return view.leadingAnchor
         case .trailing:
-            return trailingAnchor
+            return view.trailingAnchor
         case .left:
-            return leftAnchor
+            return view.leftAnchor
         case .right:
-            return rightAnchor
+            return view.rightAnchor
         case .centerX:
-            return centerXAnchor
+            return view.centerXAnchor
         }
     }
 
-    private func anchor(for anchor: VerticalAnchor) -> NSLayoutAnchor<NSLayoutYAxisAnchor> {
+    private func anchor(_ view: UIView, for anchor: VerticalAnchor) -> NSLayoutAnchor<NSLayoutYAxisAnchor> {
         switch anchor {
         case .top:
-            return topAnchor
+            return view.topAnchor
         case .bottom:
-            return bottomAnchor
+            return view.bottomAnchor
         case .centerY:
-            return centerYAnchor
+            return view.centerYAnchor
         case .firstBaseline:
-            return firstBaselineAnchor
+            return view.firstBaselineAnchor
         case .lastBaseline:
-            return lastBaselineAnchor
+            return view.lastBaselineAnchor
         }
     }
 
-    private func anchor(for anchor: DimensionAnchor) -> NSLayoutDimension {
+    private func anchor(_ view: UIView, for anchor: DimensionAnchor) -> NSLayoutDimension {
         switch anchor {
         case .width:
-            return widthAnchor
+            return view.widthAnchor
         case .height:
-            return heightAnchor
+            return view.heightAnchor
         }
     }
 
