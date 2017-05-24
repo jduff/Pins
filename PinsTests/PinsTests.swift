@@ -32,7 +32,7 @@ class PinsTests: XCTestCase {
 
     func testPinToBounds() {
         evaluateConstraints() {
-            nestedView.pin(leftTo: mainView.leftAnchor, topTo: mainView.topAnchor, rightTo: mainView.rightAnchor, bottomTo: mainView.bottomAnchor)
+            nestedView.pin(leadingTo: mainView.leadingAnchor, topTo: mainView.topAnchor, trailingTo: mainView.trailingAnchor, bottomTo: mainView.bottomAnchor)
         }
 
         XCTAssertEqual(mainView.constraints.count, 4)
@@ -48,7 +48,7 @@ class PinsTests: XCTestCase {
 
     func testPinToBoundsWithPadding() {
         evaluateConstraints() {
-            nestedView.pin(leftTo: mainView.leftAnchor, topTo: mainView.topAnchor, rightTo: mainView.rightAnchor, bottomTo: mainView.bottomAnchor, padding: 10)
+            nestedView.pin(leadingTo: mainView.leadingAnchor, topTo: mainView.topAnchor, trailingTo: mainView.trailingAnchor, bottomTo: mainView.bottomAnchor, padding: 10)
         }
 
         XCTAssertEqual(mainView.constraints.count, 4)
@@ -64,7 +64,7 @@ class PinsTests: XCTestCase {
 
     func testPinToBoundsWithOptionals() {
         evaluateConstraints() {
-            nestedView.pin(leftTo: mainView.leftAnchor, topTo: nil, rightTo: mainView.rightAnchor, bottomTo: nil)
+            nestedView.pin(leadingTo: mainView.leadingAnchor, topTo: nil, trailingTo: mainView.trailingAnchor, bottomTo: nil)
         }
 
         XCTAssertEqual(mainView.constraints.count, 2)
@@ -113,7 +113,7 @@ class PinsTests: XCTestCase {
 
     func testPinBoundsToSpecificView() {
         evaluateConstraints() {
-            nestedView.pin(leftToView: mainView, topToView: mainView, rightToView: mainView, bottomToView: mainView)
+            nestedView.pin(leadingToView: mainView, topToView: mainView, trailingToView: mainView, bottomToView: mainView)
         }
 
         XCTAssertEqual(mainView.constraints.count, 4)
@@ -129,7 +129,7 @@ class PinsTests: XCTestCase {
 
     func testPinBoundsToSpecificViewWithPadding() {
         evaluateConstraints() {
-            nestedView.pin(leftToView: mainView, topToView: mainView, rightToView: mainView, bottomToView: mainView, padding: 10)
+            nestedView.pin(leadingToView: mainView, topToView: mainView, trailingToView: mainView, bottomToView: mainView, padding: 10)
         }
 
         XCTAssertEqual(mainView.constraints.count, 4)

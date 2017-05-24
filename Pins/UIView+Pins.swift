@@ -50,17 +50,17 @@ public extension UIView {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: Array of activated `NSLayoutConstraint` objects that were created.
     @discardableResult
-    func pin(leftTo left: NSLayoutAnchor<NSLayoutXAxisAnchor>?, topTo top: NSLayoutAnchor<NSLayoutYAxisAnchor>?, rightTo right: NSLayoutAnchor<NSLayoutXAxisAnchor>?, bottomTo bottom: NSLayoutAnchor<NSLayoutYAxisAnchor>?, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
+    func pin(leadingTo leading: NSLayoutAnchor<NSLayoutXAxisAnchor>?, topTo top: NSLayoutAnchor<NSLayoutYAxisAnchor>?, trailingTo trailing: NSLayoutAnchor<NSLayoutXAxisAnchor>?, bottomTo bottom: NSLayoutAnchor<NSLayoutYAxisAnchor>?, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
         var constraints = [NSLayoutConstraint]()
 
-        if let left = left {
-            constraints.append(pin(.left, to: left, padding: padding))
+        if let leading = leading {
+            constraints.append(pin(.leading, to: leading, padding: padding))
         }
         if let top = top {
             constraints.append(pin(.top, to: top, padding: padding))
         }
-        if let right = right {
-            constraints.append(pin(.right, to: right, padding: padding))
+        if let trailing = trailing {
+            constraints.append(pin(.trailing, to: trailing, padding: padding))
         }
         if let bottom = bottom {
             constraints.append(pin(.bottom, to: bottom, padding: padding))
@@ -79,17 +79,17 @@ public extension UIView {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: Array of activated `NSLayoutConstraint` objects that were created.
     @discardableResult
-    func pin(leftToView left: UIView?, topToView top: UIView?, rightToView right: UIView?, bottomToView bottom: UIView?, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
+    func pin(leadingToView leading: UIView?, topToView top: UIView?, trailingToView trailing: UIView?, bottomToView bottom: UIView?, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
         var constraints = [NSLayoutConstraint]()
 
-        if let left = left {
-            constraints.append(pin(.left, to: left, padding: padding))
+        if let leading = leading {
+            constraints.append(pin(.leading, to: leading, padding: padding))
         }
         if let top = top {
             constraints.append(pin(.top, to: top, padding: padding))
         }
-        if let right = right {
-            constraints.append(pin(.right, to: right, padding: padding))
+        if let trailing = trailing {
+            constraints.append(pin(.trailing, to: trailing, padding: padding))
         }
         if let bottom = bottom {
             constraints.append(pin(.bottom, to: bottom, padding: padding))
@@ -108,9 +108,9 @@ public extension UIView {
     func pin(_ view: UIView, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
         var constraints = [NSLayoutConstraint]()
 
-        constraints.append(pin(.left, to: view, padding: padding))
+        constraints.append(pin(.leading, to: view, padding: padding))
         constraints.append(pin(.top, to: view, padding: padding))
-        constraints.append(pin(.right, to: view, padding: padding))
+        constraints.append(pin(.trailing, to: view, padding: padding))
         constraints.append(pin(.bottom, to: view, padding: padding))
 
         return constraints
