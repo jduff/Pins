@@ -80,7 +80,7 @@ class PinsTests: XCTestCase {
 
     func testPinBoundsToView() {
         evaluateConstraints() {
-            nestedView.pin(mainView)
+            nestedView.pin(to: mainView)
         }
 
         XCTAssertEqual(mainView.constraints.count, 4)
@@ -96,7 +96,7 @@ class PinsTests: XCTestCase {
 
     func testPinBoundsToViewWithPadding() {
         evaluateConstraints() {
-            nestedView.pin(mainView, padding: 10)
+            nestedView.pin(to: mainView, padding: 10)
         }
 
         XCTAssertEqual(mainView.constraints.count, 4)

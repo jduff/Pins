@@ -105,7 +105,7 @@ public extension UIView {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: Array of activated `NSLayoutConstraint` objects that were created.
     @discardableResult
-    func pin(_ view: UIView, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
+    func pin(to view: UIView, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
         var constraints = [NSLayoutConstraint]()
 
         constraints.append(pin(.leading, to: view, padding: padding))
