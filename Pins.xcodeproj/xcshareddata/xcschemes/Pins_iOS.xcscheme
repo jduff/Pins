@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EBB3AF1B1EC6904800FBF499"
-               BuildableName = "Pins_iOS.framework"
+               BuildableName = "Pins.framework"
                BlueprintName = "Pins_iOS"
                ReferencedContainer = "container:Pins.xcodeproj">
             </BuildableReference>
@@ -44,7 +44,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EBB3AF1B1EC6904800FBF499"
-            BuildableName = "Pins_iOS.framework"
+            BuildableName = "Pins.framework"
             BlueprintName = "Pins_iOS"
             ReferencedContainer = "container:Pins.xcodeproj">
          </BuildableReference>
@@ -66,7 +66,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EBB3AF1B1EC6904800FBF499"
-            BuildableName = "Pins_iOS.framework"
+            BuildableName = "Pins.framework"
             BlueprintName = "Pins_iOS"
             ReferencedContainer = "container:Pins.xcodeproj">
          </BuildableReference>
@@ -84,7 +84,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EBB3AF1B1EC6904800FBF499"
-            BuildableName = "Pins_iOS.framework"
+            BuildableName = "Pins.framework"
             BlueprintName = "Pins_iOS"
             ReferencedContainer = "container:Pins.xcodeproj">
          </BuildableReference>

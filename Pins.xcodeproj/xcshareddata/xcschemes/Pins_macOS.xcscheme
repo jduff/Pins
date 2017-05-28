@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EBB3AFF11EDB49C200FBF499"
-               BuildableName = "Pins_macOS.framework"
+               BuildableName = "Pins.framework"
                BlueprintName = "Pins_macOS"
                ReferencedContainer = "container:Pins.xcodeproj">
             </BuildableReference>
@@ -44,7 +44,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EBB3AFF11EDB49C200FBF499"
-            BuildableName = "Pins_macOS.framework"
+            BuildableName = "Pins.framework"
             BlueprintName = "Pins_macOS"
             ReferencedContainer = "container:Pins.xcodeproj">
          </BuildableReference>
@@ -66,7 +66,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EBB3AFF11EDB49C200FBF499"
-            BuildableName = "Pins_macOS.framework"
+            BuildableName = "Pins.framework"
             BlueprintName = "Pins_macOS"
             ReferencedContainer = "container:Pins.xcodeproj">
          </BuildableReference>
@@ -84,7 +84,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EBB3AFF11EDB49C200FBF499"
-            BuildableName = "Pins_macOS.framework"
+            BuildableName = "Pins.framework"
             BlueprintName = "Pins_macOS"
             ReferencedContainer = "container:Pins.xcodeproj">
          </BuildableReference>
