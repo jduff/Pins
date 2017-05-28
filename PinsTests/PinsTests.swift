@@ -9,18 +9,29 @@
 import XCTest
 @testable import Pins
 
+// Invert coordinates in the test view on OSX so that we can use the same tests
+class CustomView: View {
+    #if os(OSX)
+    override var isFlipped:Bool {
+        get {
+            return true
+        }
+    }
+    #endif
+}
+
 class PinsTests: XCTestCase {
     let mainViewWidth = 100
     let mainViewHeight = 100
 
-    var mainView: View!
+    var mainView: CustomView!
 
-    var nestedView: View!
+    var nestedView: CustomView!
     
     override func setUp() {
         super.setUp()
 
-        mainView = View(frame: CGRect(x: 0, y: 0, width: mainViewWidth, height: mainViewHeight))
+        mainView = CustomView(frame: CGRect(x: 0, y: 0, width: mainViewWidth, height: mainViewHeight))
 
         setupViews()
     }
@@ -680,7 +691,7 @@ class PinsTests: XCTestCase {
 
     // MARK: Private helper methods
     private func setupViews() {
-        nestedView = View()
+        nestedView = CustomView()
         mainView.addSubview(nestedView)
     }
 
