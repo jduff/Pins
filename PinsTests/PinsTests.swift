@@ -13,14 +13,14 @@ class PinsTests: XCTestCase {
     let mainViewWidth = 100
     let mainViewHeight = 100
 
-    var mainView: UIView!
+    var mainView: View!
 
-    var nestedView: UIView!
+    var nestedView: View!
     
     override func setUp() {
         super.setUp()
 
-        mainView = UIView(frame: CGRect(x: 0, y: 0, width: mainViewWidth, height: mainViewHeight))
+        mainView = View(frame: CGRect(x: 0, y: 0, width: mainViewWidth, height: mainViewHeight))
 
         setupViews()
     }
@@ -230,7 +230,7 @@ class PinsTests: XCTestCase {
             constraint.firstAttribute == .width
         }
 
-        XCTAssertEqual(widthConstraint?.firstItem as? UIView, nestedView)
+        XCTAssertEqual(widthConstraint?.firstItem as? View, nestedView)
         XCTAssertEqual(widthConstraint?.firstAttribute, .width)
         XCTAssertEqual(widthConstraint?.secondAttribute, .width)
 
@@ -238,7 +238,7 @@ class PinsTests: XCTestCase {
             constraint.firstAttribute == .height
         }
 
-        XCTAssertEqual(heightConstraint?.firstItem as? UIView, nestedView)
+        XCTAssertEqual(heightConstraint?.firstItem as? View, nestedView)
         XCTAssertEqual(heightConstraint?.firstAttribute, .height)
         XCTAssertEqual(heightConstraint?.secondAttribute, .height)
     }
@@ -254,7 +254,7 @@ class PinsTests: XCTestCase {
         let constraint = mainView.constraints.first!
 
         XCTAssertTrue(constraint.isActive)
-        XCTAssertEqual(constraint.firstItem as? UIView, nestedView)
+        XCTAssertEqual(constraint.firstItem as? View, nestedView)
         XCTAssertEqual(constraint.relation, .equal)
         XCTAssertEqual(constraint.firstAttribute, .width)
         XCTAssertEqual(constraint.secondAttribute, .width)
@@ -273,7 +273,7 @@ class PinsTests: XCTestCase {
         let constraint = mainView.constraints.first!
 
         XCTAssertTrue(constraint.isActive)
-        XCTAssertEqual(constraint.firstItem as? UIView, nestedView)
+        XCTAssertEqual(constraint.firstItem as? View, nestedView)
         XCTAssertEqual(constraint.relation, .equal)
         XCTAssertEqual(constraint.firstAttribute, .height)
         XCTAssertEqual(constraint.secondAttribute, .height)
@@ -680,7 +680,7 @@ class PinsTests: XCTestCase {
 
     // MARK: Private helper methods
     private func setupViews() {
-        nestedView = UIView()
+        nestedView = View()
         mainView.addSubview(nestedView)
     }
 
@@ -694,12 +694,17 @@ class PinsTests: XCTestCase {
         evaluateConstraints()
     }
 
-    private func evaluateConstraints(for view: UIView) {
+    private func evaluateConstraints(for view: View) {
         for subview in view.subviews {
             evaluateConstraints(for: subview)
         }
 
+    #if os(iOS) || os(tvOS) || os(watchOS)
         view.setNeedsLayout()
         view.layoutIfNeeded()
+    #elseif os(OSX)
+        view.needsLayout = true
+        view.layoutSubtreeIfNeeded()
+    #endif
     }
 }

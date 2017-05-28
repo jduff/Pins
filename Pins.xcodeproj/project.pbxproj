@@ -11,6 +11,10 @@
 		EBB3AF2B1EC6904800FBF499 /* PinsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB3AF2A1EC6904800FBF499 /* PinsTests.swift */; };
 		EBB3AF2D1EC6904800FBF499 /* Pins.h in Headers */ = {isa = PBXBuildFile; fileRef = EBB3AF1F1EC6904800FBF499 /* Pins.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EBB3AF371EC6908400FBF499 /* UIView+Pins.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB3AF361EC6908400FBF499 /* UIView+Pins.swift */; };
+		EBB3AFFB1EDB49C200FBF499 /* Pins.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB3AFF21EDB49C200FBF499 /* Pins.framework */; };
+		EBB3B0161EDB515200FBF499 /* Pins.h in Headers */ = {isa = PBXBuildFile; fileRef = EBB3AF1F1EC6904800FBF499 /* Pins.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EBB3B0171EDB515200FBF499 /* UIView+Pins.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB3AF361EC6908400FBF499 /* UIView+Pins.swift */; };
+		EBB3B0181EDB515B00FBF499 /* PinsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB3AF2A1EC6904800FBF499 /* PinsTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -21,16 +25,27 @@
 			remoteGlobalIDString = EBB3AF1B1EC6904800FBF499;
 			remoteInfo = Pins;
 		};
+		EBB3AFFC1EDB49C200FBF499 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EBB3AF131EC6904800FBF499 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EBB3AFF11EDB49C200FBF499;
+			remoteInfo = Pins_macOS;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		EBB3AF1C1EC6904800FBF499 /* Pins.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pins.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBB3AF1F1EC6904800FBF499 /* Pins.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Pins.h; sourceTree = "<group>"; };
-		EBB3AF201EC6904800FBF499 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EBB3AF251EC6904800FBF499 /* PinsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PinsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBB3AF2A1EC6904800FBF499 /* PinsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinsTests.swift; sourceTree = "<group>"; };
-		EBB3AF2C1EC6904800FBF499 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EBB3AF361EC6908400FBF499 /* UIView+Pins.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Pins.swift"; sourceTree = "<group>"; };
+		EBB3AFF21EDB49C200FBF499 /* Pins.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pins.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBB3AFFA1EDB49C200FBF499 /* Pins_macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Pins_macOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBB3B00C1EDB4CC100FBF499 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EBB3B0101EDB4CDF00FBF499 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EBB3B0121EDB4D4A00FBF499 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EBB3B0141EDB4D5600FBF499 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +64,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EBB3AFEE1EDB49C200FBF499 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBB3AFF71EDB49C200FBF499 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBB3AFFB1EDB49C200FBF499 /* Pins.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -57,6 +87,7 @@
 			children = (
 				EBB3AF1E1EC6904800FBF499 /* Pins */,
 				EBB3AF291EC6904800FBF499 /* PinsTests */,
+				EBB3B0091EDB4CC100FBF499 /* Supporting Files */,
 				EBB3AF1D1EC6904800FBF499 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -66,6 +97,8 @@
 			children = (
 				EBB3AF1C1EC6904800FBF499 /* Pins.framework */,
 				EBB3AF251EC6904800FBF499 /* PinsTests.xctest */,
+				EBB3AFF21EDB49C200FBF499 /* Pins.framework */,
+				EBB3AFFA1EDB49C200FBF499 /* Pins_macOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -74,7 +107,6 @@
 			isa = PBXGroup;
 			children = (
 				EBB3AF1F1EC6904800FBF499 /* Pins.h */,
-				EBB3AF201EC6904800FBF499 /* Info.plist */,
 				EBB3AF361EC6908400FBF499 /* UIView+Pins.swift */,
 			);
 			path = Pins;
@@ -83,10 +115,52 @@
 		EBB3AF291EC6904800FBF499 /* PinsTests */ = {
 			isa = PBXGroup;
 			children = (
+				EBB3B00E1EDB4CDF00FBF499 /* Pins_iOS */,
+				EBB3B00F1EDB4CDF00FBF499 /* Pins_macOS */,
 				EBB3AF2A1EC6904800FBF499 /* PinsTests.swift */,
-				EBB3AF2C1EC6904800FBF499 /* Info.plist */,
 			);
 			path = PinsTests;
+			sourceTree = "<group>";
+		};
+		EBB3B0091EDB4CC100FBF499 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EBB3B00A1EDB4CC100FBF499 /* Pins_iOS */,
+				EBB3B00B1EDB4CC100FBF499 /* Pins_macOS */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EBB3B00A1EDB4CC100FBF499 /* Pins_iOS */ = {
+			isa = PBXGroup;
+			children = (
+				EBB3B0141EDB4D5600FBF499 /* Info.plist */,
+			);
+			path = Pins_iOS;
+			sourceTree = "<group>";
+		};
+		EBB3B00B1EDB4CC100FBF499 /* Pins_macOS */ = {
+			isa = PBXGroup;
+			children = (
+				EBB3B00C1EDB4CC100FBF499 /* Info.plist */,
+			);
+			path = Pins_macOS;
+			sourceTree = "<group>";
+		};
+		EBB3B00E1EDB4CDF00FBF499 /* Pins_iOS */ = {
+			isa = PBXGroup;
+			children = (
+				EBB3B0121EDB4D4A00FBF499 /* Info.plist */,
+			);
+			path = Pins_iOS;
+			sourceTree = "<group>";
+		};
+		EBB3B00F1EDB4CDF00FBF499 /* Pins_macOS */ = {
+			isa = PBXGroup;
+			children = (
+				EBB3B0101EDB4CDF00FBF499 /* Info.plist */,
+			);
+			path = Pins_macOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -100,12 +174,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EBB3AFEF1EDB49C200FBF499 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBB3B0161EDB515200FBF499 /* Pins.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		EBB3AF1B1EC6904800FBF499 /* Pins */ = {
+		EBB3AF1B1EC6904800FBF499 /* Pins_iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EBB3AF301EC6904800FBF499 /* Build configuration list for PBXNativeTarget "Pins" */;
+			buildConfigurationList = EBB3AF301EC6904800FBF499 /* Build configuration list for PBXNativeTarget "Pins_iOS" */;
 			buildPhases = (
 				EBB3AF171EC6904800FBF499 /* Sources */,
 				EBB3AF181EC6904800FBF499 /* Frameworks */,
@@ -116,7 +198,7 @@
 			);
 			dependencies = (
 			);
-			name = Pins;
+			name = Pins_iOS;
 			productName = Pins;
 			productReference = EBB3AF1C1EC6904800FBF499 /* Pins.framework */;
 			productType = "com.apple.product-type.framework";
@@ -137,6 +219,42 @@
 			name = PinsTests;
 			productName = PinsTests;
 			productReference = EBB3AF251EC6904800FBF499 /* PinsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		EBB3AFF11EDB49C200FBF499 /* Pins_macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EBB3B0071EDB49C200FBF499 /* Build configuration list for PBXNativeTarget "Pins_macOS" */;
+			buildPhases = (
+				EBB3AFED1EDB49C200FBF499 /* Sources */,
+				EBB3AFEE1EDB49C200FBF499 /* Frameworks */,
+				EBB3AFEF1EDB49C200FBF499 /* Headers */,
+				EBB3AFF01EDB49C200FBF499 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Pins_macOS;
+			productName = Pins_macOS;
+			productReference = EBB3AFF21EDB49C200FBF499 /* Pins.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		EBB3AFF91EDB49C200FBF499 /* Pins_macOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EBB3B0081EDB49C200FBF499 /* Build configuration list for PBXNativeTarget "Pins_macOSTests" */;
+			buildPhases = (
+				EBB3AFF61EDB49C200FBF499 /* Sources */,
+				EBB3AFF71EDB49C200FBF499 /* Frameworks */,
+				EBB3AFF81EDB49C200FBF499 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EBB3AFFD1EDB49C200FBF499 /* PBXTargetDependency */,
+			);
+			name = Pins_macOSTests;
+			productName = Pins_macOSTests;
+			productReference = EBB3AFFA1EDB49C200FBF499 /* Pins_macOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -160,6 +278,16 @@
 						DevelopmentTeam = RPD2X3YNDL;
 						ProvisioningStyle = Automatic;
 					};
+					EBB3AFF11EDB49C200FBF499 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = RPD2X3YNDL;
+						ProvisioningStyle = Automatic;
+					};
+					EBB3AFF91EDB49C200FBF499 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = RPD2X3YNDL;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = EBB3AF161EC6904800FBF499 /* Build configuration list for PBXProject "Pins" */;
@@ -174,8 +302,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EBB3AF1B1EC6904800FBF499 /* Pins */,
+				EBB3AF1B1EC6904800FBF499 /* Pins_iOS */,
 				EBB3AF241EC6904800FBF499 /* PinsTests */,
+				EBB3AFF11EDB49C200FBF499 /* Pins_macOS */,
+				EBB3AFF91EDB49C200FBF499 /* Pins_macOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -189,6 +319,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		EBB3AF231EC6904800FBF499 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBB3AFF01EDB49C200FBF499 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBB3AFF81EDB49C200FBF499 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -214,13 +358,34 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EBB3AFED1EDB49C200FBF499 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBB3B0171EDB515200FBF499 /* UIView+Pins.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBB3AFF61EDB49C200FBF499 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBB3B0181EDB515B00FBF499 /* PinsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
 		EBB3AF281EC6904800FBF499 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EBB3AF1B1EC6904800FBF499 /* Pins */;
+			target = EBB3AF1B1EC6904800FBF499 /* Pins_iOS */;
 			targetProxy = EBB3AF271EC6904800FBF499 /* PBXContainerItemProxy */;
+		};
+		EBB3AFFD1EDB49C200FBF499 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EBB3AFF11EDB49C200FBF499 /* Pins_macOS */;
+			targetProxy = EBB3AFFC1EDB49C200FBF499 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -336,11 +501,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Pins/Info.plist;
+				INFOPLIST_FILE = "Supporting Files/Pins_iOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Pins;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Pins;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -357,11 +522,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Pins/Info.plist;
+				INFOPLIST_FILE = "Supporting Files/Pins_iOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Pins;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Pins;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 			};
@@ -372,7 +537,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = RPD2X3YNDL;
-				INFOPLIST_FILE = PinsTests/Info.plist;
+				INFOPLIST_FILE = PinsTests/Pins_iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.PinsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -385,10 +550,90 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = RPD2X3YNDL;
-				INFOPLIST_FILE = PinsTests/Info.plist;
+				INFOPLIST_FILE = PinsTests/Pins_iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.PinsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		EBB3B0031EDB49C200FBF499 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = RPD2X3YNDL;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "Supporting Files/Pins_macOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Pins;
+				PRODUCT_NAME = Pins;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		EBB3B0041EDB49C200FBF499 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = RPD2X3YNDL;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "Supporting Files/Pins_macOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Pins;
+				PRODUCT_NAME = Pins;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		EBB3B0051EDB49C200FBF499 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = RPD2X3YNDL;
+				INFOPLIST_FILE = PinsTests/Pins_macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Pins-macOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		EBB3B0061EDB49C200FBF499 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = RPD2X3YNDL;
+				INFOPLIST_FILE = PinsTests/Pins_macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Pins-macOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -405,13 +650,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EBB3AF301EC6904800FBF499 /* Build configuration list for PBXNativeTarget "Pins" */ = {
+		EBB3AF301EC6904800FBF499 /* Build configuration list for PBXNativeTarget "Pins_iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EBB3AF311EC6904800FBF499 /* Debug */,
 				EBB3AF321EC6904800FBF499 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EBB3AF331EC6904800FBF499 /* Build configuration list for PBXNativeTarget "PinsTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +666,25 @@
 				EBB3AF351EC6904800FBF499 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EBB3B0071EDB49C200FBF499 /* Build configuration list for PBXNativeTarget "Pins_macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EBB3B0031EDB49C200FBF499 /* Debug */,
+				EBB3B0041EDB49C200FBF499 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EBB3B0081EDB49C200FBF499 /* Build configuration list for PBXNativeTarget "Pins_macOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EBB3B0051EDB49C200FBF499 /* Debug */,
+				EBB3B0061EDB49C200FBF499 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
