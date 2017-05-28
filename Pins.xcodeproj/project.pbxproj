@@ -10,10 +10,10 @@
 		EBB3AF261EC6904800FBF499 /* Pins.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB3AF1C1EC6904800FBF499 /* Pins.framework */; };
 		EBB3AF2B1EC6904800FBF499 /* PinsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB3AF2A1EC6904800FBF499 /* PinsTests.swift */; };
 		EBB3AF2D1EC6904800FBF499 /* Pins.h in Headers */ = {isa = PBXBuildFile; fileRef = EBB3AF1F1EC6904800FBF499 /* Pins.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EBB3AF371EC6908400FBF499 /* UIView+Pins.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB3AF361EC6908400FBF499 /* UIView+Pins.swift */; };
+		EBB3AF371EC6908400FBF499 /* View+Pins.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB3AF361EC6908400FBF499 /* View+Pins.swift */; };
 		EBB3AFFB1EDB49C200FBF499 /* Pins.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB3AFF21EDB49C200FBF499 /* Pins.framework */; };
 		EBB3B0161EDB515200FBF499 /* Pins.h in Headers */ = {isa = PBXBuildFile; fileRef = EBB3AF1F1EC6904800FBF499 /* Pins.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EBB3B0171EDB515200FBF499 /* UIView+Pins.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB3AF361EC6908400FBF499 /* UIView+Pins.swift */; };
+		EBB3B0171EDB515200FBF499 /* View+Pins.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB3AF361EC6908400FBF499 /* View+Pins.swift */; };
 		EBB3B0181EDB515B00FBF499 /* PinsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB3AF2A1EC6904800FBF499 /* PinsTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,7 +39,7 @@
 		EBB3AF1F1EC6904800FBF499 /* Pins.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Pins.h; sourceTree = "<group>"; };
 		EBB3AF251EC6904800FBF499 /* PinsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PinsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBB3AF2A1EC6904800FBF499 /* PinsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinsTests.swift; sourceTree = "<group>"; };
-		EBB3AF361EC6908400FBF499 /* UIView+Pins.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Pins.swift"; sourceTree = "<group>"; };
+		EBB3AF361EC6908400FBF499 /* View+Pins.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+Pins.swift"; sourceTree = "<group>"; };
 		EBB3AFF21EDB49C200FBF499 /* Pins.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pins.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBB3AFFA1EDB49C200FBF499 /* Pins_macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Pins_macOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBB3B00C1EDB4CC100FBF499 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -107,7 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				EBB3AF1F1EC6904800FBF499 /* Pins.h */,
-				EBB3AF361EC6908400FBF499 /* UIView+Pins.swift */,
+				EBB3AF361EC6908400FBF499 /* View+Pins.swift */,
 			);
 			path = Pins;
 			sourceTree = "<group>";
@@ -346,7 +346,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EBB3AF371EC6908400FBF499 /* UIView+Pins.swift in Sources */,
+				EBB3AF371EC6908400FBF499 /* View+Pins.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,7 +362,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EBB3B0171EDB515200FBF499 /* UIView+Pins.swift in Sources */,
+				EBB3B0171EDB515200FBF499 /* View+Pins.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
