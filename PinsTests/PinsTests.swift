@@ -10,7 +10,7 @@ import XCTest
 @testable import Pins
 
 // Invert coordinates in the test view on OSX so that we can use the same tests
-class CustomView: View {
+class CustomView: PView {
     #if os(OSX)
     override var isFlipped:Bool {
         get {
@@ -241,7 +241,7 @@ class PinsTests: XCTestCase {
             constraint.firstAttribute == .width
         }
 
-        XCTAssertEqual(widthConstraint?.firstItem as? View, nestedView)
+        XCTAssertEqual(widthConstraint?.firstItem as? PView, nestedView)
         XCTAssertEqual(widthConstraint?.firstAttribute, .width)
         XCTAssertEqual(widthConstraint?.secondAttribute, .width)
 
@@ -249,7 +249,7 @@ class PinsTests: XCTestCase {
             constraint.firstAttribute == .height
         }
 
-        XCTAssertEqual(heightConstraint?.firstItem as? View, nestedView)
+        XCTAssertEqual(heightConstraint?.firstItem as? PView, nestedView)
         XCTAssertEqual(heightConstraint?.firstAttribute, .height)
         XCTAssertEqual(heightConstraint?.secondAttribute, .height)
     }
@@ -265,7 +265,7 @@ class PinsTests: XCTestCase {
         let constraint = mainView.constraints.first!
 
         XCTAssertTrue(constraint.isActive)
-        XCTAssertEqual(constraint.firstItem as? View, nestedView)
+        XCTAssertEqual(constraint.firstItem as? PView, nestedView)
         XCTAssertEqual(constraint.relation, .equal)
         XCTAssertEqual(constraint.firstAttribute, .width)
         XCTAssertEqual(constraint.secondAttribute, .width)
@@ -284,7 +284,7 @@ class PinsTests: XCTestCase {
         let constraint = mainView.constraints.first!
 
         XCTAssertTrue(constraint.isActive)
-        XCTAssertEqual(constraint.firstItem as? View, nestedView)
+        XCTAssertEqual(constraint.firstItem as? PView, nestedView)
         XCTAssertEqual(constraint.relation, .equal)
         XCTAssertEqual(constraint.firstAttribute, .height)
         XCTAssertEqual(constraint.secondAttribute, .height)
@@ -705,7 +705,7 @@ class PinsTests: XCTestCase {
         evaluateConstraints()
     }
 
-    private func evaluateConstraints(for view: View) {
+    private func evaluateConstraints(for view: PView) {
         for subview in view.subviews {
             evaluateConstraints(for: subview)
         }
