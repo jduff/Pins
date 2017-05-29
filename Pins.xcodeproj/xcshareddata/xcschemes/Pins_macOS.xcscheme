@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EBB3AF1B1EC6904800FBF499"
+               BlueprintIdentifier = "EBB3AFF11EDB49C200FBF499"
                BuildableName = "Pins.framework"
-               BlueprintName = "Pins"
+               BlueprintName = "Pins_macOS"
                ReferencedContainer = "container:Pins.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -26,15 +26,16 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EBB3AF241EC6904800FBF499"
-               BuildableName = "PinsTests.xctest"
-               BlueprintName = "PinsTests"
+               BlueprintIdentifier = "EBB3AFF91EDB49C200FBF499"
+               BuildableName = "Pins_macOSTests.xctest"
+               BlueprintName = "Pins_macOSTests"
                ReferencedContainer = "container:Pins.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,9 +43,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EBB3AF1B1EC6904800FBF499"
+            BlueprintIdentifier = "EBB3AFF11EDB49C200FBF499"
             BuildableName = "Pins.framework"
-            BlueprintName = "Pins"
+            BlueprintName = "Pins_macOS"
             ReferencedContainer = "container:Pins.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -64,9 +65,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EBB3AF1B1EC6904800FBF499"
+            BlueprintIdentifier = "EBB3AFF11EDB49C200FBF499"
             BuildableName = "Pins.framework"
-            BlueprintName = "Pins"
+            BlueprintName = "Pins_macOS"
             ReferencedContainer = "container:Pins.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -82,9 +83,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EBB3AF1B1EC6904800FBF499"
+            BlueprintIdentifier = "EBB3AFF11EDB49C200FBF499"
             BuildableName = "Pins.framework"
-            BlueprintName = "Pins"
+            BlueprintName = "Pins_macOS"
             ReferencedContainer = "container:Pins.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
