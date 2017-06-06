@@ -29,6 +29,3 @@ nestedView.pin(height: 20, width: 10)
 nestedView.pin(.top, to: mainView.topAnchor, padding: 10)
 nestedView.pin(.top, to: mainView, padding: 10) // same as above
 ```
-
-## TODO
-- Support macOS and watchOS targets
