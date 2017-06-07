@@ -42,7 +42,7 @@ public enum DimensionAnchor {
     public typealias PView = UIView
 #elseif os(OSX)
     import Cocoa
-   public typealias PView = NSView
+    public typealias PView = NSView
 #endif
 
 // MARK: - Extentions to add `pin` methods to `View` objects.
