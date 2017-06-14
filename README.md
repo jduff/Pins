@@ -4,11 +4,24 @@ Simple API for Auto Layout interfaces.
 ## Setup
 
 ### Carthage
-1. Add the jduff/Pins project to your Cartfile.
+1. Add the jduff/Pins project to your `Cartfile`.
 ```
 github "jduff/Pins"
 ```
 2. Run `carthage update`, then [add the framework into your project](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application).
+3. Import the Pins framework/module.
+- Swift: `import Pins`
+
+### Cocoapods
+1. Add the following information to your `Podfile`.
+```
+use_frameworks!
+
+target '<Your Target Name>' do
+    pod 'Pins', '~> 1.0'
+end
+```
+2. Run `pod install`
 3. Import the Pins framework/module.
 - Swift: `import Pins`
 
