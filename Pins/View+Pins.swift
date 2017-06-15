@@ -133,7 +133,9 @@ public extension PView {
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
     func pin(_ edge: HorizontalAnchor, to anchorAttachment: NSLayoutAnchor<NSLayoutXAxisAnchor>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
-        let constraint = anchor(self, for: edge).constraint(equalTo: anchorAttachment, constant: padding)
+
+        let constraint = anchor(self, for: edge).constraint(equalTo: anchorAttachment,
+                                                            constant: convertPadding(edge, padding))
 
         return disableTranslatesAutoresizingMaskAndActivate(constraint)
     }
@@ -147,7 +149,8 @@ public extension PView {
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
     func pin(_ edge: HorizontalAnchor, lessThanOrEqualTo anchorAttachment: NSLayoutAnchor<NSLayoutXAxisAnchor>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
-        let constraint = anchor(self, for: edge).constraint(lessThanOrEqualTo: anchorAttachment, constant: padding)
+        let constraint = anchor(self, for: edge).constraint(lessThanOrEqualTo: anchorAttachment,
+                                                            constant: convertPadding(edge, padding))
 
         return disableTranslatesAutoresizingMaskAndActivate(constraint)
     }
@@ -161,7 +164,8 @@ public extension PView {
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
     func pin(_ edge: HorizontalAnchor, greaterThanOrEqualTo anchorAttachment: NSLayoutAnchor<NSLayoutXAxisAnchor>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
-        let constraint = anchor(self, for: edge).constraint(greaterThanOrEqualTo: anchorAttachment, constant: padding)
+        let constraint = anchor(self, for: edge).constraint(greaterThanOrEqualTo: anchorAttachment,
+                                                            constant: convertPadding(edge, padding))
 
         return disableTranslatesAutoresizingMaskAndActivate(constraint)
     }
@@ -176,7 +180,8 @@ public extension PView {
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
     func pin(_ edge: HorizontalAnchor, to view: PView, padding: CGFloat = 0.0) -> NSLayoutConstraint {
-        let constraint = anchor(self, for: edge).constraint(equalTo: anchor(view, for: edge), constant: padding)
+        let constraint = anchor(self, for: edge).constraint(equalTo: anchor(view, for: edge),
+                                                            constant: convertPadding(edge, padding))
 
         return disableTranslatesAutoresizingMaskAndActivate(constraint)
     }
@@ -190,7 +195,8 @@ public extension PView {
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
     func pin(_ edge: HorizontalAnchor, lessThanOrEqualTo view: PView, padding: CGFloat = 0.0) -> NSLayoutConstraint {
-        let constraint = anchor(self, for: edge).constraint(lessThanOrEqualTo: anchor(view, for: edge), constant: padding)
+        let constraint = anchor(self, for: edge).constraint(lessThanOrEqualTo: anchor(view, for: edge),
+                                                            constant: convertPadding(edge, padding))
 
         return disableTranslatesAutoresizingMaskAndActivate(constraint)
     }
@@ -204,7 +210,8 @@ public extension PView {
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
     func pin(_ edge: HorizontalAnchor, greaterThanOrEqualTo view: PView, padding: CGFloat = 0.0) -> NSLayoutConstraint {
-        let constraint = anchor(self, for: edge).constraint(greaterThanOrEqualTo: anchor(view, for: edge), constant: padding)
+        let constraint = anchor(self, for: edge).constraint(greaterThanOrEqualTo: anchor(view, for: edge),
+                                                            constant: convertPadding(edge, padding))
 
         return disableTranslatesAutoresizingMaskAndActivate(constraint)
     }
@@ -218,7 +225,8 @@ public extension PView {
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
     func pin(_ edge: VerticalAnchor, to anchorAttachment: NSLayoutAnchor<NSLayoutYAxisAnchor>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
-        let constraint = anchor(self, for: edge).constraint(equalTo: anchorAttachment, constant: padding)
+        let constraint = anchor(self, for: edge).constraint(equalTo: anchorAttachment,
+                                                            constant: convertPadding(edge, padding))
 
         return disableTranslatesAutoresizingMaskAndActivate(constraint)
     }
@@ -232,7 +240,8 @@ public extension PView {
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
     func pin(_ edge: VerticalAnchor, lessThanOrEqualTo anchorAttachment: NSLayoutAnchor<NSLayoutYAxisAnchor>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
-        let constraint = anchor(self, for: edge).constraint(lessThanOrEqualTo: anchorAttachment, constant: padding)
+        let constraint = anchor(self, for: edge).constraint(lessThanOrEqualTo: anchorAttachment,
+                                                            constant: convertPadding(edge, padding))
 
         return disableTranslatesAutoresizingMaskAndActivate(constraint)
     }
@@ -246,7 +255,8 @@ public extension PView {
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
     func pin(_ edge: VerticalAnchor, greaterThanOrEqualTo anchorAttachment: NSLayoutAnchor<NSLayoutYAxisAnchor>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
-        let constraint = anchor(self, for: edge).constraint(greaterThanOrEqualTo: anchorAttachment, constant: padding)
+        let constraint = anchor(self, for: edge).constraint(greaterThanOrEqualTo: anchorAttachment,
+                                                            constant: convertPadding(edge, padding))
 
         return disableTranslatesAutoresizingMaskAndActivate(constraint)
     }
@@ -260,7 +270,8 @@ public extension PView {
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
     func pin(_ edge: VerticalAnchor, to view: PView, padding: CGFloat = 0.0) -> NSLayoutConstraint {
-        let constraint = anchor(self, for: edge).constraint(equalTo: anchor(view, for: edge), constant: padding)
+        let constraint = anchor(self, for: edge).constraint(equalTo: anchor(view, for: edge),
+                                                            constant: convertPadding(edge, padding))
 
         return disableTranslatesAutoresizingMaskAndActivate(constraint)
     }
@@ -274,7 +285,8 @@ public extension PView {
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
     func pin(_ edge: VerticalAnchor, lessThanOrEqualTo view: PView, padding: CGFloat = 0.0) -> NSLayoutConstraint {
-        let constraint = anchor(self, for: edge).constraint(lessThanOrEqualTo: anchor(view, for: edge), constant: padding)
+        let constraint = anchor(self, for: edge).constraint(lessThanOrEqualTo: anchor(view, for: edge),
+                                                            constant: convertPadding(edge, padding))
 
         return disableTranslatesAutoresizingMaskAndActivate(constraint)
     }
@@ -288,7 +300,8 @@ public extension PView {
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
     func pin(_ edge: VerticalAnchor, greaterThanOrEqualTo view: PView, padding: CGFloat = 0.0) -> NSLayoutConstraint {
-        let constraint = anchor(self, for: edge).constraint(greaterThanOrEqualTo: anchor(view, for: edge), constant: padding)
+        let constraint = anchor(self, for: edge).constraint(greaterThanOrEqualTo: anchor(view, for: edge),
+                                                            constant: convertPadding(edge, padding))
 
         return disableTranslatesAutoresizingMaskAndActivate(constraint)
     }
@@ -494,6 +507,22 @@ public extension PView {
         case .height:
             return view.heightAnchor
         }
+    }
+
+    private func convertPadding(_ edge: HorizontalAnchor, _ padding: CGFloat = 0) -> CGFloat {
+        if edge == .trailing || edge == .right {
+            return -padding
+        }
+
+        return padding
+    }
+
+    private func convertPadding(_ edge: VerticalAnchor, _ padding: CGFloat = 0) -> CGFloat {
+        if edge == .bottom || edge == .lastBaseline {
+            return -padding
+        }
+
+        return padding
     }
 
     private func disableTranslatesAutoresizingMaskAndActivate(_ constraint: NSLayoutConstraint) -> NSLayoutConstraint {

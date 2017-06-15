@@ -64,13 +64,31 @@ class PinsTests: XCTestCase {
 
         XCTAssertEqual(mainView.constraints.count, 4)
 
-        for constraint in mainView.constraints {
-            XCTAssertTrue(constraint.isActive)
-            XCTAssertEqual(constraint.constant, 10)
-            XCTAssertEqual(constraint.relation, .equal)
-        }
+        let leading = mainView.constraints.first { (constraint) -> Bool in
+            constraint.firstAttribute == .leading
+        }!
 
-        XCTAssertEqual(nestedView.frame, CGRect(x: 10, y: 10, width: CGFloat(mainViewWidth), height: CGFloat(mainViewHeight)))
+        AssertConstraint(leading, relation: .equal, firstAttribute: .leading, secondAttribute: .leading, constant: 10)
+
+        let top = mainView.constraints.first { (constraint) -> Bool in
+            constraint.firstAttribute == .top
+        }!
+
+        AssertConstraint(top, relation: .equal, firstAttribute: .top, secondAttribute: .top, constant: 10)
+
+        let trailing = mainView.constraints.first { (constraint) -> Bool in
+            constraint.firstAttribute == .trailing
+        }!
+
+        AssertConstraint(trailing, relation: .equal, firstAttribute: .trailing, secondAttribute: .trailing, constant: -10)
+
+        let bottom = mainView.constraints.first { (constraint) -> Bool in
+            constraint.firstAttribute == .bottom
+        }!
+
+        AssertConstraint(bottom, relation: .equal, firstAttribute: .bottom, secondAttribute: .bottom, constant: -10)
+
+        XCTAssertEqual(nestedView.frame, CGRect(x: 10, y: 10, width: CGFloat(mainViewWidth-20), height: CGFloat(mainViewHeight-20)))
     }
 
     func testPinToBoundsWithOptionals() {
@@ -112,13 +130,31 @@ class PinsTests: XCTestCase {
 
         XCTAssertEqual(mainView.constraints.count, 4)
 
-        for constraint in mainView.constraints {
-            XCTAssertTrue(constraint.isActive)
-            XCTAssertEqual(constraint.constant, 10)
-            XCTAssertEqual(constraint.relation, .equal)
-        }
+        let leading = mainView.constraints.first { (constraint) -> Bool in
+            constraint.firstAttribute == .leading
+        }!
 
-        XCTAssertEqual(nestedView.frame, CGRect(x: 10, y: 10, width: CGFloat(mainViewWidth), height: CGFloat(mainViewHeight)))
+        AssertConstraint(leading, relation: .equal, firstAttribute: .leading, secondAttribute: .leading, constant: 10)
+
+        let top = mainView.constraints.first { (constraint) -> Bool in
+            constraint.firstAttribute == .top
+        }!
+
+        AssertConstraint(top, relation: .equal, firstAttribute: .top, secondAttribute: .top, constant: 10)
+
+        let trailing = mainView.constraints.first { (constraint) -> Bool in
+            constraint.firstAttribute == .trailing
+        }!
+
+        AssertConstraint(trailing, relation: .equal, firstAttribute: .trailing, secondAttribute: .trailing, constant: -10)
+
+        let bottom = mainView.constraints.first { (constraint) -> Bool in
+            constraint.firstAttribute == .bottom
+        }!
+
+        AssertConstraint(bottom, relation: .equal, firstAttribute: .bottom, secondAttribute: .bottom, constant: -10)
+
+        XCTAssertEqual(nestedView.frame, CGRect(x: 10, y: 10, width: CGFloat(mainViewWidth-20), height: CGFloat(mainViewHeight-20)))
     }
 
 
@@ -145,13 +181,31 @@ class PinsTests: XCTestCase {
 
         XCTAssertEqual(mainView.constraints.count, 4)
 
-        for constraint in mainView.constraints {
-            XCTAssertTrue(constraint.isActive)
-            XCTAssertEqual(constraint.constant, 10)
-            XCTAssertEqual(constraint.relation, .equal)
-        }
+        let leading = mainView.constraints.first { (constraint) -> Bool in
+            constraint.firstAttribute == .leading
+        }!
 
-        XCTAssertEqual(nestedView.frame, CGRect(x: 10, y: 10, width: CGFloat(mainViewWidth), height: CGFloat(mainViewHeight)))
+        AssertConstraint(leading, relation: .equal, firstAttribute: .leading, secondAttribute: .leading, constant: 10)
+
+        let top = mainView.constraints.first { (constraint) -> Bool in
+            constraint.firstAttribute == .top
+        }!
+
+        AssertConstraint(top, relation: .equal, firstAttribute: .top, secondAttribute: .top, constant: 10)
+
+        let trailing = mainView.constraints.first { (constraint) -> Bool in
+            constraint.firstAttribute == .trailing
+        }!
+
+        AssertConstraint(trailing, relation: .equal, firstAttribute: .trailing, secondAttribute: .trailing, constant: -10)
+
+        let bottom = mainView.constraints.first { (constraint) -> Bool in
+            constraint.firstAttribute == .bottom
+        }!
+
+        AssertConstraint(bottom, relation: .equal, firstAttribute: .bottom, secondAttribute: .bottom, constant: -10)
+
+        XCTAssertEqual(nestedView.frame, CGRect(x: 10, y: 10, width: CGFloat(mainViewWidth-20), height: CGFloat(mainViewHeight-20)))
     }
 
     func testPinSize() {
@@ -697,6 +751,20 @@ class PinsTests: XCTestCase {
 
     private func evaluateConstraints() {
         evaluateConstraints(for: mainView)
+    }
+
+    private func AssertConstraint(_ constraint: NSLayoutConstraint, relation: NSLayoutRelation, firstAttribute: NSLayoutAttribute?, secondAttribute: NSLayoutAttribute?, constant: CGFloat?) {
+        XCTAssertTrue(constraint.isActive)
+        XCTAssertEqual(constraint.relation, relation)
+        if let firstAttribute = firstAttribute {
+            XCTAssertEqual(constraint.firstAttribute, firstAttribute)
+        }
+        if let secondAttribute = secondAttribute {
+            XCTAssertEqual(constraint.secondAttribute, secondAttribute)
+        }
+        if let constant = constant {
+            XCTAssertEqual(constraint.constant, constant)
+        }
     }
 
     private func evaluateConstraints(block: () ->()) {
