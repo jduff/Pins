@@ -1,6 +1,8 @@
 # Pins
 Simple API for Auto Layout interfaces. Works with iOS and macOS.
 
+Pins takes care of the mundane and simplifies the code you need to write whenever possible. You don't need to set `translatesAutoresizingMaskIntoConstraints` to `false` all over the place, calling `pin` will do that for you. You probably want the constraints you just created to be activated so Pins will do that for you too. Needing to negate padding when creating constraints to `right`, `bottom` or `trailing` anchors isn't intuitive so pins will take care of that. If Pins doesn't do everything you need or you need to reference the constraints later no problem, they are returned whenever you call `pin` so you can have full control.
+
 ## Setup
 
 ### Carthage
@@ -46,6 +48,7 @@ let topConstraint = nestedView.pin(.top, to: mainView, padding: 10) // same as a
 - When you call `pin` on a `View` we set `translatesAutoresizingMaskIntoConstraints` to `false` so you don't need to.
 - On the `NSLayoutConstraint` that is created we also set `isActive` to `true` so it's already activated for you.
 - We return any `NSLayoutConstraint` objects that are created when you call `pin` so that you can reference them later or do anything else you might need.
+- For simplicity, the padding value will be appropriately negated when applied to right/trailing/bottom edges. If you wish to push views further to the right, use a negative padding value.
 
 ## License
 
