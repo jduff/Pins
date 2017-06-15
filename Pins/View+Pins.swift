@@ -510,19 +510,11 @@ public extension PView {
     }
 
     private func convertPadding(_ edge: HorizontalAnchor, _ padding: CGFloat = 0) -> CGFloat {
-        if edge == .trailing || edge == .right {
-            return -padding
-        }
-
-        return padding
+        return edge == .trailing || edge == .right ? -padding : padding
     }
 
     private func convertPadding(_ edge: VerticalAnchor, _ padding: CGFloat = 0) -> CGFloat {
-        if edge == .bottom || edge == .lastBaseline {
-            return -padding
-        }
-
-        return padding
+        return edge == .bottom || edge == .lastBaseline ? -padding : padding
     }
 
     private func disableTranslatesAutoresizingMaskAndActivate(_ constraint: NSLayoutConstraint) -> NSLayoutConstraint {
