@@ -223,21 +223,15 @@ class PinsTests: XCTestCase {
 
         let widthConstraint = nestedView.constraints.first { (constraint) -> Bool in
             constraint.firstAttribute == .width
-        }
+        }!
 
-        XCTAssertEqual(widthConstraint?.constant, 10.0)
-        XCTAssertEqual(widthConstraint?.relation, .equal)
-        XCTAssertEqual(widthConstraint?.firstAttribute, .width)
-        XCTAssertEqual(widthConstraint?.secondAttribute, .notAnAttribute)
+        AssertConstraint(widthConstraint, relation: .equal, firstAttribute: .width, secondAttribute: .notAnAttribute, constant: 10)
 
         let heightConstraint = nestedView.constraints.first { (constraint) -> Bool in
             constraint.firstAttribute == .height
-        }
+        }!
 
-        XCTAssertEqual(heightConstraint?.constant, 20.0)
-        XCTAssertEqual(heightConstraint?.relation, .equal)
-        XCTAssertEqual(heightConstraint?.firstAttribute, .height)
-        XCTAssertEqual(heightConstraint?.secondAttribute, .notAnAttribute)
+        AssertConstraint(heightConstraint, relation: .equal, firstAttribute: .height, secondAttribute: .notAnAttribute, constant: 20)
     }
 
     func testPinSizeOptionalWidth() {
@@ -250,11 +244,7 @@ class PinsTests: XCTestCase {
 
         let constraint = nestedView.constraints.first!
 
-        XCTAssertTrue(constraint.isActive)
-        XCTAssertEqual(constraint.constant, 20.0)
-        XCTAssertEqual(constraint.relation, .equal)
-        XCTAssertEqual(constraint.firstAttribute, .height)
-        XCTAssertEqual(constraint.secondAttribute, .notAnAttribute)
+        AssertConstraint(constraint, relation: .equal, firstAttribute: .height, secondAttribute: .notAnAttribute, constant: 20)
 
         XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 0, height: 20))
     }
@@ -269,11 +259,7 @@ class PinsTests: XCTestCase {
 
         let constraint = nestedView.constraints.first!
 
-        XCTAssertTrue(constraint.isActive)
-        XCTAssertEqual(constraint.constant, 10.0)
-        XCTAssertEqual(constraint.relation, .equal)
-        XCTAssertEqual(constraint.firstAttribute, .width)
-        XCTAssertEqual(constraint.secondAttribute, .notAnAttribute)
+        AssertConstraint(constraint, relation: .equal, firstAttribute: .width, secondAttribute: .notAnAttribute, constant: 10)
 
         XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 10, height: 0))
     }
@@ -286,26 +272,19 @@ class PinsTests: XCTestCase {
         XCTAssertEqual(nestedView.constraints.count, 0)
         XCTAssertEqual(mainView.constraints.count, 2)
 
-        for constraint in mainView.constraints {
-            XCTAssertTrue(constraint.isActive)
-            XCTAssertEqual(constraint.relation, .equal)
-        }
-
         let widthConstraint = mainView.constraints.first { (constraint) -> Bool in
             constraint.firstAttribute == .width
-        }
+        }!
 
-        XCTAssertEqual(widthConstraint?.firstItem as? PView, nestedView)
-        XCTAssertEqual(widthConstraint?.firstAttribute, .width)
-        XCTAssertEqual(widthConstraint?.secondAttribute, .width)
+        XCTAssertEqual(widthConstraint.firstItem as? PView, nestedView)
+        AssertConstraint(widthConstraint, relation: .equal, firstAttribute: .width, secondAttribute: .width)
 
         let heightConstraint = mainView.constraints.first { (constraint) -> Bool in
             constraint.firstAttribute == .height
-        }
+        }!
 
-        XCTAssertEqual(heightConstraint?.firstItem as? PView, nestedView)
-        XCTAssertEqual(heightConstraint?.firstAttribute, .height)
-        XCTAssertEqual(heightConstraint?.secondAttribute, .height)
+        XCTAssertEqual(heightConstraint.firstItem as? PView, nestedView)
+        AssertConstraint(heightConstraint, relation: .equal, firstAttribute: .height, secondAttribute: .height)
     }
 
     func testPinSizeToViewOptionalHeight() {
@@ -318,11 +297,8 @@ class PinsTests: XCTestCase {
 
         let constraint = mainView.constraints.first!
 
-        XCTAssertTrue(constraint.isActive)
         XCTAssertEqual(constraint.firstItem as? PView, nestedView)
-        XCTAssertEqual(constraint.relation, .equal)
-        XCTAssertEqual(constraint.firstAttribute, .width)
-        XCTAssertEqual(constraint.secondAttribute, .width)
+        AssertConstraint(constraint, relation: .equal, firstAttribute: .width, secondAttribute: .width)
 
         XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: CGFloat(mainViewWidth), height: 0))
     }
@@ -337,11 +313,8 @@ class PinsTests: XCTestCase {
 
         let constraint = mainView.constraints.first!
 
-        XCTAssertTrue(constraint.isActive)
         XCTAssertEqual(constraint.firstItem as? PView, nestedView)
-        XCTAssertEqual(constraint.relation, .equal)
-        XCTAssertEqual(constraint.firstAttribute, .height)
-        XCTAssertEqual(constraint.secondAttribute, .height)
+        AssertConstraint(constraint, relation: .equal, firstAttribute: .height, secondAttribute: .height)
 
         XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 0, height: CGFloat(mainViewHeight)))
     }
@@ -356,10 +329,7 @@ class PinsTests: XCTestCase {
 
         let constraint = mainView.constraints.first!
 
-        XCTAssertTrue(constraint.isActive)
-        XCTAssertEqual(constraint.relation, .lessThanOrEqual)
-        XCTAssertEqual(constraint.firstAttribute, .left)
-        XCTAssertEqual(constraint.secondAttribute, .left)
+        AssertConstraint(constraint, relation: .lessThanOrEqual, firstAttribute: .left, secondAttribute: .left, constant: 0)
 
         XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 0, height: 0))
     }
@@ -374,10 +344,7 @@ class PinsTests: XCTestCase {
 
         let constraint = mainView.constraints.first!
 
-        XCTAssertTrue(constraint.isActive)
-        XCTAssertEqual(constraint.relation, .lessThanOrEqual)
-        XCTAssertEqual(constraint.firstAttribute, .left)
-        XCTAssertEqual(constraint.secondAttribute, .left)
+        AssertConstraint(constraint, relation: .lessThanOrEqual, firstAttribute: .left, secondAttribute: .left, constant: 10)
 
         XCTAssertEqual(nestedView.frame, CGRect(x: 10, y: 0, width: 0, height: 0))
     }
@@ -392,10 +359,7 @@ class PinsTests: XCTestCase {
 
         let constraint = mainView.constraints.first!
 
-        XCTAssertTrue(constraint.isActive)
-        XCTAssertEqual(constraint.relation, .greaterThanOrEqual)
-        XCTAssertEqual(constraint.firstAttribute, .left)
-        XCTAssertEqual(constraint.secondAttribute, .left)
+        AssertConstraint(constraint, relation: .greaterThanOrEqual, firstAttribute: .left, secondAttribute: .left, constant: 0)
 
         XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 0, height: 0))
     }
@@ -410,10 +374,7 @@ class PinsTests: XCTestCase {
 
         let constraint = mainView.constraints.first!
 
-        XCTAssertTrue(constraint.isActive)
-        XCTAssertEqual(constraint.relation, .greaterThanOrEqual)
-        XCTAssertEqual(constraint.firstAttribute, .left)
-        XCTAssertEqual(constraint.secondAttribute, .left)
+        AssertConstraint(constraint, relation: .greaterThanOrEqual, firstAttribute: .left, secondAttribute: .left, constant: 10)
 
         XCTAssertEqual(nestedView.frame, CGRect(x: 10, y: 0, width: 0, height: 0))
     }
@@ -429,10 +390,7 @@ class PinsTests: XCTestCase {
 
         let constraint = mainView.constraints.first!
 
-        XCTAssertTrue(constraint.isActive)
-        XCTAssertEqual(constraint.relation, .lessThanOrEqual)
-        XCTAssertEqual(constraint.firstAttribute, .left)
-        XCTAssertEqual(constraint.secondAttribute, .left)
+        AssertConstraint(constraint, relation: .lessThanOrEqual, firstAttribute: .left, secondAttribute: .left, constant: 0)
 
         XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 0, height: 0))
     }
@@ -447,10 +405,7 @@ class PinsTests: XCTestCase {
 
         let constraint = mainView.constraints.first!
 
-        XCTAssertTrue(constraint.isActive)
-        XCTAssertEqual(constraint.relation, .lessThanOrEqual)
-        XCTAssertEqual(constraint.firstAttribute, .left)
-        XCTAssertEqual(constraint.secondAttribute, .left)
+        AssertConstraint(constraint, relation: .lessThanOrEqual, firstAttribute: .left, secondAttribute: .left, constant: 10)
 
         XCTAssertEqual(nestedView.frame, CGRect(x: 10, y: 0, width: 0, height: 0))
     }
@@ -465,10 +420,7 @@ class PinsTests: XCTestCase {
 
         let constraint = mainView.constraints.first!
 
-        XCTAssertTrue(constraint.isActive)
-        XCTAssertEqual(constraint.relation, .greaterThanOrEqual)
-        XCTAssertEqual(constraint.firstAttribute, .left)
-        XCTAssertEqual(constraint.secondAttribute, .left)
+        AssertConstraint(constraint, relation: .greaterThanOrEqual, firstAttribute: .left, secondAttribute: .left, constant: 0)
 
         XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 0, height: 0))
     }
@@ -483,10 +435,7 @@ class PinsTests: XCTestCase {
 
         let constraint = mainView.constraints.first!
 
-        XCTAssertTrue(constraint.isActive)
-        XCTAssertEqual(constraint.relation, .greaterThanOrEqual)
-        XCTAssertEqual(constraint.firstAttribute, .left)
-        XCTAssertEqual(constraint.secondAttribute, .left)
+        AssertConstraint(constraint, relation: .greaterThanOrEqual, firstAttribute: .left, secondAttribute: .left, constant: 10)
         
         XCTAssertEqual(nestedView.frame, CGRect(x: 10, y: 0, width: 0, height: 0))
     }
@@ -501,10 +450,7 @@ class PinsTests: XCTestCase {
 
         let constraint = mainView.constraints.first!
 
-        XCTAssertTrue(constraint.isActive)
-        XCTAssertEqual(constraint.relation, .lessThanOrEqual)
-        XCTAssertEqual(constraint.firstAttribute, .top)
-        XCTAssertEqual(constraint.secondAttribute, .top)
+        AssertConstraint(constraint, relation: .lessThanOrEqual, firstAttribute: .top, secondAttribute: .top, constant: 0)
 
         XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 0, height: 0))
     }
@@ -519,10 +465,7 @@ class PinsTests: XCTestCase {
 
         let constraint = mainView.constraints.first!
 
-        XCTAssertTrue(constraint.isActive)
-        XCTAssertEqual(constraint.relation, .lessThanOrEqual)
-        XCTAssertEqual(constraint.firstAttribute, .top)
-        XCTAssertEqual(constraint.secondAttribute, .top)
+        AssertConstraint(constraint, relation: .lessThanOrEqual, firstAttribute: .top, secondAttribute: .top, constant: 10)
 
         XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 10, width: 0, height: 0))
     }
@@ -537,10 +480,7 @@ class PinsTests: XCTestCase {
 
         let constraint = mainView.constraints.first!
 
-        XCTAssertTrue(constraint.isActive)
-        XCTAssertEqual(constraint.relation, .greaterThanOrEqual)
-        XCTAssertEqual(constraint.firstAttribute, .top)
-        XCTAssertEqual(constraint.secondAttribute, .top)
+        AssertConstraint(constraint, relation: .greaterThanOrEqual, firstAttribute: .top, secondAttribute: .top, constant: 0)
 
         XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 0, height: 0))
     }
@@ -555,10 +495,7 @@ class PinsTests: XCTestCase {
 
         let constraint = mainView.constraints.first!
 
-        XCTAssertTrue(constraint.isActive)
-        XCTAssertEqual(constraint.relation, .greaterThanOrEqual)
-        XCTAssertEqual(constraint.firstAttribute, .top)
-        XCTAssertEqual(constraint.secondAttribute, .top)
+        AssertConstraint(constraint, relation: .greaterThanOrEqual, firstAttribute: .top, secondAttribute: .top, constant: 10)
 
         XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 10, width: 0, height: 0))
     }
@@ -573,10 +510,7 @@ class PinsTests: XCTestCase {
 
         let constraint = mainView.constraints.first!
 
-        XCTAssertTrue(constraint.isActive)
-        XCTAssertEqual(constraint.relation, .lessThanOrEqual)
-        XCTAssertEqual(constraint.firstAttribute, .top)
-        XCTAssertEqual(constraint.secondAttribute, .top)
+        AssertConstraint(constraint, relation: .lessThanOrEqual, firstAttribute: .top, secondAttribute: .top, constant: 0)
 
         XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 0, height: 0))
     }
@@ -591,10 +525,7 @@ class PinsTests: XCTestCase {
 
         let constraint = mainView.constraints.first!
 
-        XCTAssertTrue(constraint.isActive)
-        XCTAssertEqual(constraint.relation, .lessThanOrEqual)
-        XCTAssertEqual(constraint.firstAttribute, .top)
-        XCTAssertEqual(constraint.secondAttribute, .top)
+        AssertConstraint(constraint, relation: .lessThanOrEqual, firstAttribute: .top, secondAttribute: .top, constant: 10)
 
         XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 10, width: 0, height: 0))
     }
@@ -609,10 +540,7 @@ class PinsTests: XCTestCase {
 
         let constraint = mainView.constraints.first!
 
-        XCTAssertTrue(constraint.isActive)
-        XCTAssertEqual(constraint.relation, .greaterThanOrEqual)
-        XCTAssertEqual(constraint.firstAttribute, .top)
-        XCTAssertEqual(constraint.secondAttribute, .top)
+        AssertConstraint(constraint, relation: .greaterThanOrEqual, firstAttribute: .top, secondAttribute: .top, constant: 0)
 
         XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 0, height: 0))
     }
@@ -627,10 +555,7 @@ class PinsTests: XCTestCase {
 
         let constraint = mainView.constraints.first!
 
-        XCTAssertTrue(constraint.isActive)
-        XCTAssertEqual(constraint.relation, .greaterThanOrEqual)
-        XCTAssertEqual(constraint.firstAttribute, .top)
-        XCTAssertEqual(constraint.secondAttribute, .top)
+        AssertConstraint(constraint, relation: .greaterThanOrEqual, firstAttribute: .top, secondAttribute: .top, constant: 10)
         
         XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 10, width: 0, height: 0))
     }
@@ -645,10 +570,7 @@ class PinsTests: XCTestCase {
 
         let constraint = mainView.constraints.first!
 
-        XCTAssertTrue(constraint.isActive)
-        XCTAssertEqual(constraint.relation, .lessThanOrEqual)
-        XCTAssertEqual(constraint.firstAttribute, .width)
-        XCTAssertEqual(constraint.secondAttribute, .width)
+        AssertConstraint(constraint, relation: .lessThanOrEqual, firstAttribute: .width, secondAttribute: .width)
 
         XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 0, height: 0))
     }
@@ -663,10 +585,7 @@ class PinsTests: XCTestCase {
 
         let constraint = mainView.constraints.first!
 
-        XCTAssertTrue(constraint.isActive)
-        XCTAssertEqual(constraint.relation, .lessThanOrEqual)
-        XCTAssertEqual(constraint.firstAttribute, .width)
-        XCTAssertEqual(constraint.secondAttribute, .width)
+        AssertConstraint(constraint, relation: .lessThanOrEqual, firstAttribute: .width, secondAttribute: .width)
 
         XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 0, height: 0))
     }
@@ -681,10 +600,7 @@ class PinsTests: XCTestCase {
 
         let constraint = nestedView.constraints.first!
 
-        XCTAssertTrue(constraint.isActive)
-        XCTAssertEqual(constraint.relation, .lessThanOrEqual)
-        XCTAssertEqual(constraint.firstAttribute, .width)
-        XCTAssertEqual(constraint.secondAttribute, .notAnAttribute)
+        AssertConstraint(constraint, relation: .lessThanOrEqual, firstAttribute: .width, secondAttribute: .notAnAttribute, constant: 50)
 
         XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 0, height: 0))
     }
@@ -699,10 +615,7 @@ class PinsTests: XCTestCase {
 
         let constraint = mainView.constraints.first!
 
-        XCTAssertTrue(constraint.isActive)
-        XCTAssertEqual(constraint.relation, .greaterThanOrEqual)
-        XCTAssertEqual(constraint.firstAttribute, .width)
-        XCTAssertEqual(constraint.secondAttribute, .width)
+        AssertConstraint(constraint, relation: .greaterThanOrEqual, firstAttribute: .width, secondAttribute: .width)
 
         XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: CGFloat(mainViewWidth), height: 0))
     }
@@ -717,10 +630,7 @@ class PinsTests: XCTestCase {
 
         let constraint = mainView.constraints.first!
 
-        XCTAssertTrue(constraint.isActive)
-        XCTAssertEqual(constraint.relation, .greaterThanOrEqual)
-        XCTAssertEqual(constraint.firstAttribute, .width)
-        XCTAssertEqual(constraint.secondAttribute, .width)
+        AssertConstraint(constraint, relation: .greaterThanOrEqual, firstAttribute: .width, secondAttribute: .width)
 
         XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: CGFloat(mainViewWidth), height: 0))
     }
@@ -735,10 +645,7 @@ class PinsTests: XCTestCase {
 
         let constraint = nestedView.constraints.first!
 
-        XCTAssertTrue(constraint.isActive)
-        XCTAssertEqual(constraint.relation, .greaterThanOrEqual)
-        XCTAssertEqual(constraint.firstAttribute, .width)
-        XCTAssertEqual(constraint.secondAttribute, .notAnAttribute)
+        AssertConstraint(constraint, relation: .greaterThanOrEqual, firstAttribute: .width, secondAttribute: .notAnAttribute, constant: 10)
 
         XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 10, height: 0))
     }
@@ -753,7 +660,7 @@ class PinsTests: XCTestCase {
         evaluateConstraints(for: mainView)
     }
 
-    private func AssertConstraint(_ constraint: NSLayoutConstraint, relation: NSLayoutRelation, firstAttribute: NSLayoutAttribute?, secondAttribute: NSLayoutAttribute?, constant: CGFloat?) {
+    private func AssertConstraint(_ constraint: NSLayoutConstraint, relation: NSLayoutRelation, firstAttribute: NSLayoutAttribute? = nil, secondAttribute: NSLayoutAttribute? = nil, constant: CGFloat? = nil) {
         XCTAssertTrue(constraint.isActive)
         XCTAssertEqual(constraint.relation, relation)
         if let firstAttribute = firstAttribute {
