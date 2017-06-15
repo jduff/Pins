@@ -51,9 +51,9 @@ public extension PView {
     /// Pin view boundries to the specified anchors. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
     ///
     /// - Parameters:
-    ///   - left: Optional anchor to pin the left of the view to. Must be a `NSLayoutXAxisAnchor`.
+    ///   - leading: Optional anchor to pin the left of the view to. Must be a `NSLayoutXAxisAnchor`.
     ///   - top: Optional anchor to pin the top of the view to. Must be a `NSLayoutYAxisAnchor`.
-    ///   - right: Optional anchor to pin the right of the view to. Must be a `NSLayoutXAxisAnchor`.
+    ///   - trailing: Optional anchor to pin the right of the view to. Must be a `NSLayoutXAxisAnchor`.
     ///   - bottom: Optional anchor to pin the bottom of the view to. Must be a `NSLayoutYAxisAnchor`.
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: Array of activated `NSLayoutConstraint` objects that were created.
@@ -80,9 +80,9 @@ public extension PView {
     /// Pin view boundries to the corresponding anchors on the specified views. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
     ///
     /// - Parameters:
-    ///   - left: Optional view to pin the left of this view to. Must be a `View`.
+    ///   - leading: Optional view to pin the left of this view to. Must be a `View`.
     ///   - top: Optional view to pin the top of this view to. Must be a `View`.
-    ///   - right: Optional view to pin the right of this view to. Must be a `View`.
+    ///   - trailing: Optional view to pin the right of this view to. Must be a `View`.
     ///   - bottom: Optional view to pin the bottom of this view to. Must be a `View`.
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: Array of activated `NSLayoutConstraint` objects that were created.
