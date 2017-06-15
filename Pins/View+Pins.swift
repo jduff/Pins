@@ -37,17 +37,52 @@ public enum DimensionAnchor {
     case width, height
 }
 
+protocol Pins: class {
+    var bottomAnchor: NSLayoutYAxisAnchor { get }
+    var centerXAnchor: NSLayoutXAxisAnchor { get }
+    var centerYAnchor: NSLayoutYAxisAnchor { get }
+    var heightAnchor: NSLayoutDimension { get }
+    var leadingAnchor: NSLayoutXAxisAnchor { get }
+    var leftAnchor: NSLayoutXAxisAnchor { get }
+    var rightAnchor: NSLayoutXAxisAnchor { get }
+    var topAnchor: NSLayoutYAxisAnchor { get }
+    var trailingAnchor: NSLayoutXAxisAnchor { get }
+    var widthAnchor: NSLayoutDimension { get }
+    var firstBaselineAnchor: NSLayoutYAxisAnchor { get }
+    var lastBaselineAnchor: NSLayoutYAxisAnchor { get }
+
+    var translatesAutoresizingMaskIntoConstraints: Bool { get set }
+}
+
+extension Pins {
+    // Stub methods that are missing so UILayoutGuid and NsLayoutGuid will conform
+    var firstBaselineAnchor: NSLayoutYAxisAnchor {
+        return topAnchor
+    }
+
+    var lastBaselineAnchor: NSLayoutYAxisAnchor {
+        return bottomAnchor
+    }
+
+    var translatesAutoresizingMaskIntoConstraints: Bool {
+        get {
+            return true
+        }
+        set {}
+    }
+}
+
 #if os(iOS) || os(tvOS) || os(watchOS)
     import UIKit
-    public typealias PView = UIView
+    extension UIView: Pins {}
+    extension UILayoutGuide: Pins {}
 #elseif os(OSX)
     import Cocoa
-    public typealias PView = NSView
+    extension NSView: Pins {}
+    extension NSLayoutGuide: Pins {}
 #endif
 
-// MARK: - Extentions to add `pin` methods to `View` objects.
-public extension PView {
-
+extension Pins where Self: Pins {
     /// Pin view boundries to the specified anchors. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
     ///
     /// - Parameters:
@@ -87,7 +122,7 @@ public extension PView {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: Array of activated `NSLayoutConstraint` objects that were created.
     @discardableResult
-    func pin<View:PView>(leadingTo leading: View?, topTo top: View?, trailingTo trailing: View?, bottomTo bottom: View?, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
+    func pin<View:Pins>(leadingTo leading: View?, topTo top: View?, trailingTo trailing: View?, bottomTo bottom: View?, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
         var constraints = [NSLayoutConstraint]()
 
         if let leading = leading {
@@ -113,7 +148,7 @@ public extension PView {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: Array of activated `NSLayoutConstraint` objects that were created.
     @discardableResult
-    func pin(to view: PView, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
+    func pin<View:Pins>(to view: View, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
         var constraints = [NSLayoutConstraint]()
 
         constraints.append(pin(.leading, to: view, padding: padding))
@@ -263,7 +298,7 @@ public extension PView {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
-    func pin(_ edge: HorizontalAnchor, to view: PView, padding: CGFloat = 0.0) -> NSLayoutConstraint {
+    func pin<View:Pins>(_ edge: HorizontalAnchor, to view: View, padding: CGFloat = 0.0) -> NSLayoutConstraint {
         let constraint = anchor(self, for: edge).constraint(equalTo: anchor(view, for: edge),
                                                             constant: convertPadding(edge, padding))
 
@@ -278,7 +313,7 @@ public extension PView {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
-    func pin(_ edge: HorizontalAnchor, lessThanOrEqualTo view: PView, padding: CGFloat = 0.0) -> NSLayoutConstraint {
+    func pin<View:Pins>(_ edge: HorizontalAnchor, lessThanOrEqualTo view: View, padding: CGFloat = 0.0) -> NSLayoutConstraint {
         let constraint = anchor(self, for: edge).constraint(lessThanOrEqualTo: anchor(view, for: edge),
                                                             constant: convertPadding(edge, padding))
 
@@ -293,7 +328,7 @@ public extension PView {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
-    func pin(_ edge: HorizontalAnchor, greaterThanOrEqualTo view: PView, padding: CGFloat = 0.0) -> NSLayoutConstraint {
+    func pin<View:Pins>(_ edge: HorizontalAnchor, greaterThanOrEqualTo view: View, padding: CGFloat = 0.0) -> NSLayoutConstraint {
         let constraint = anchor(self, for: edge).constraint(greaterThanOrEqualTo: anchor(view, for: edge),
                                                             constant: convertPadding(edge, padding))
 
@@ -353,7 +388,7 @@ public extension PView {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
-    func pin(_ edge: VerticalAnchor, to view: PView, padding: CGFloat = 0.0) -> NSLayoutConstraint {
+    func pin<View:Pins>(_ edge: VerticalAnchor, to view: View, padding: CGFloat = 0.0) -> NSLayoutConstraint {
         let constraint = anchor(self, for: edge).constraint(equalTo: anchor(view, for: edge),
                                                             constant: convertPadding(edge, padding))
 
@@ -368,7 +403,7 @@ public extension PView {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
-    func pin(_ edge: VerticalAnchor, lessThanOrEqualTo view: PView, padding: CGFloat = 0.0) -> NSLayoutConstraint {
+    func pin<View:Pins>(_ edge: VerticalAnchor, lessThanOrEqualTo view: View, padding: CGFloat = 0.0) -> NSLayoutConstraint {
         let constraint = anchor(self, for: edge).constraint(lessThanOrEqualTo: anchor(view, for: edge),
                                                             constant: convertPadding(edge, padding))
 
@@ -383,7 +418,7 @@ public extension PView {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
-    func pin(_ edge: VerticalAnchor, greaterThanOrEqualTo view: PView, padding: CGFloat = 0.0) -> NSLayoutConstraint {
+    func pin<View:Pins>(_ edge: VerticalAnchor, greaterThanOrEqualTo view: View, padding: CGFloat = 0.0) -> NSLayoutConstraint {
         let constraint = anchor(self, for: edge).constraint(greaterThanOrEqualTo: anchor(view, for: edge),
                                                             constant: convertPadding(edge, padding))
 
@@ -440,7 +475,7 @@ public extension PView {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
-    func pin(_ dimension: DimensionAnchor, to view: PView, padding: CGFloat = 0.0) -> NSLayoutConstraint {
+    func pin<View:Pins>(_ dimension: DimensionAnchor, to view: View, padding: CGFloat = 0.0) -> NSLayoutConstraint {
         let constraint = anchor(self, for: dimension).constraint(equalTo: anchor(view, for: dimension), constant: padding)
 
         return disableTranslatesAutoresizingMaskAndActivate(constraint)
@@ -454,7 +489,7 @@ public extension PView {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
-    func pin(_ dimension: DimensionAnchor, lessThanOrEqualTo view: PView, padding: CGFloat = 0.0) -> NSLayoutConstraint {
+    func pin<View:Pins>(_ dimension: DimensionAnchor, lessThanOrEqualTo view: View, padding: CGFloat = 0.0) -> NSLayoutConstraint {
         let constraint = anchor(self, for: dimension).constraint(lessThanOrEqualTo: anchor(view, for: dimension), constant: padding)
 
         return disableTranslatesAutoresizingMaskAndActivate(constraint)
@@ -468,7 +503,7 @@ public extension PView {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
-    func pin(_ dimension: DimensionAnchor, greaterThanOrEqualTo view: PView, padding: CGFloat = 0.0) -> NSLayoutConstraint {
+    func pin<View:Pins>(_ dimension: DimensionAnchor, greaterThanOrEqualTo view: View, padding: CGFloat = 0.0) -> NSLayoutConstraint {
         let constraint = anchor(self, for: dimension).constraint(greaterThanOrEqualTo: anchor(view, for: dimension), constant: padding)
 
         return disableTranslatesAutoresizingMaskAndActivate(constraint)
@@ -540,7 +575,7 @@ public extension PView {
     ///   - width: Optional view to pin the hieght of this view to.
     /// - Returns: Array of activated `NSLayoutConstraint` objects that were created.
     @discardableResult
-    func pin(height: PView?, width: PView?) -> [NSLayoutConstraint] {
+    func pin<View:Pins>(height: View?, width: View?) -> [NSLayoutConstraint] {
         var constraints = [NSLayoutConstraint]()
 
         if let height = height {
@@ -554,7 +589,7 @@ public extension PView {
     }
 
     // MARK: Private helper methods.
-    private func anchor(_ view: PView, for anchor: HorizontalAnchor) -> NSLayoutAnchor<NSLayoutXAxisAnchor> {
+    private func anchor<View:Pins>(_ view: View, for anchor: HorizontalAnchor) -> NSLayoutAnchor<NSLayoutXAxisAnchor> {
         switch anchor {
         case .leading:
             return view.leadingAnchor
@@ -569,7 +604,7 @@ public extension PView {
         }
     }
 
-    private func anchor(_ view: PView, for anchor: VerticalAnchor) -> NSLayoutAnchor<NSLayoutYAxisAnchor> {
+    private func anchor<View:Pins>(_ view: View, for anchor: VerticalAnchor) -> NSLayoutAnchor<NSLayoutYAxisAnchor> {
         switch anchor {
         case .top:
             return view.topAnchor
@@ -584,7 +619,7 @@ public extension PView {
         }
     }
 
-    private func anchor(_ view: PView, for anchor: DimensionAnchor) -> NSLayoutDimension {
+    private func anchor<View:Pins>(_ view: View, for anchor: DimensionAnchor) -> NSLayoutDimension {
         switch anchor {
         case .width:
             return view.widthAnchor

@@ -9,29 +9,36 @@
 import XCTest
 @testable import Pins
 
-// Invert coordinates in the test view on OSX so that we can use the same tests
-class CustomView: PView {
-    #if os(OSX)
-    override var isFlipped:Bool {
-        get {
-            return true
+// Alias view type so we can test both ios and mac os
+#if os(iOS) || os(tvOS) || os(watchOS)
+    typealias PLayoutGuide = UILayoutGuide
+    class PView: UIView {}
+#elseif os(OSX)
+    typealias PLayoutGuide = NSLayoutGuide
+    // Invert coordinates in the test view on OSX so that we can use the same tests
+    class PView: NSView {
+        #if os(OSX)
+        override var isFlipped:Bool {
+            get {
+                return true
+            }
         }
+        #endif
     }
-    #endif
-}
+#endif
 
 class PinsTests: XCTestCase {
     let mainViewWidth = 100
     let mainViewHeight = 100
 
-    var mainView: CustomView!
-
-    var nestedView: CustomView!
+    var mainView: PView!
+    var nestedView: PView!
+    var layoutGuide: PLayoutGuide!
     
     override func setUp() {
         super.setUp()
 
-        mainView = CustomView(frame: CGRect(x: 0, y: 0, width: mainViewWidth, height: mainViewHeight))
+        mainView = PView(frame: CGRect(x: 0, y: 0, width: mainViewWidth, height: mainViewHeight))
 
         setupViews()
     }
@@ -797,10 +804,44 @@ class PinsTests: XCTestCase {
         XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 10, height: 0))
     }
 
+    func testPinToLayoutGuide() {
+        evaluateConstraints {
+            nestedView.pin(.left, to: mainView)
+            nestedView.pin(.right, to: layoutGuide.leftAnchor)
+            layoutGuide.pin(.top, to: mainView)
+        }
+
+        XCTAssertEqual(nestedView.constraints.count, 0)
+        XCTAssertEqual(mainView.constraints.count, 3)
+
+        let leftConstraint = mainView.constraints.first { (constraint) -> Bool in
+            constraint.firstAttribute == .left
+        }!
+
+        XCTAssertEqual(leftConstraint.firstItem as? PView, nestedView)
+        AssertConstraint(leftConstraint, relation: .equal, firstAttribute: .left, secondAttribute: .left, constant: 0)
+
+        let rightConstraint = mainView.constraints.first { (constraint) -> Bool in
+            constraint.firstAttribute == .right
+        }!
+
+        XCTAssertEqual(rightConstraint.firstItem as? PView, nestedView)
+        AssertConstraint(rightConstraint, relation: .equal, firstAttribute: .right, secondAttribute: .left, constant: 0)
+
+        let topConstraint = mainView.constraints.first { (constraint) -> Bool in
+            constraint.firstAttribute == .top
+        }!
+
+        XCTAssertEqual(topConstraint.secondItem as? PView, mainView)
+        AssertConstraint(topConstraint, relation: .equal, firstAttribute: .top, secondAttribute: .top, constant: 0)
+    }
+
     // MARK: Private helper methods
     private func setupViews() {
-        nestedView = CustomView()
+        nestedView = PView()
         mainView.addSubview(nestedView)
+        layoutGuide = PLayoutGuide()
+        mainView.addLayoutGuide(layoutGuide)
     }
 
     private func evaluateConstraints() {
@@ -829,7 +870,7 @@ class PinsTests: XCTestCase {
 
     private func evaluateConstraints(for view: PView) {
         for subview in view.subviews {
-            evaluateConstraints(for: subview)
+            evaluateConstraints(for: subview as! PView)
         }
 
     #if os(iOS) || os(tvOS) || os(watchOS)
