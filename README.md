@@ -1,5 +1,5 @@
 # Pins
-Simple API for Auto Layout interfaces.
+Simple API for Auto Layout interfaces. Works with iOS and macOS.
 
 ## Setup
 
@@ -40,5 +40,13 @@ nestedView.pin(height: 20, width: 10)
 
 // Pin top with padding, 1 constraint with constant of 10 created and activated
 nestedView.pin(.top, to: mainView.topAnchor, padding: 10)
-nestedView.pin(.top, to: mainView, padding: 10) // same as above
+let topConstraint = nestedView.pin(.top, to: mainView, padding: 10) // same as above
 ```
+
+- When you call `pin` on a `View` we set `translatesAutoresizingMaskIntoConstraints` to `false` so you don't need to.
+- On the `NSLayoutConstraint` that is created we also set `isActive` to `true` so it's already activated for you.
+- We return any `NSLayoutConstraint` objects that are created when you call `pin` so that you can reference them later or do anything else you might need.
+
+## License
+
+Pins is licensed under the MIT License. See the LICENSE file for more information.
