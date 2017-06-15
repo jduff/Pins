@@ -160,7 +160,7 @@ class PinsTests: XCTestCase {
 
     func testPinBoundsToSpecificView() {
         evaluateConstraints() {
-            nestedView.pin(leadingToView: mainView, topToView: mainView, trailingToView: mainView, bottomToView: mainView)
+            nestedView.pin(leadingTo: mainView, topTo: mainView, trailingTo: mainView, bottomTo: mainView)
         }
 
         XCTAssertEqual(mainView.constraints.count, 4)
@@ -176,7 +176,7 @@ class PinsTests: XCTestCase {
 
     func testPinBoundsToSpecificViewWithPadding() {
         evaluateConstraints() {
-            nestedView.pin(leadingToView: mainView, topToView: mainView, trailingToView: mainView, bottomToView: mainView, padding: 10)
+            nestedView.pin(leadingTo: mainView, topTo: mainView, trailingTo: mainView, bottomTo: mainView, padding: 10)
         }
 
         XCTAssertEqual(mainView.constraints.count, 4)
