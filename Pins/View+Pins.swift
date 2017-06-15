@@ -87,7 +87,7 @@ public extension PView {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: Array of activated `NSLayoutConstraint` objects that were created.
     @discardableResult
-    func pin(leadingToView leading: PView?, topToView top: PView?, trailingToView trailing: PView?, bottomToView bottom: PView?, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
+    func pin<View:PView>(leadingTo leading: View?, topTo top: View?, trailingTo trailing: View?, bottomTo bottom: View?, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
         var constraints = [NSLayoutConstraint]()
 
         if let leading = leading {
