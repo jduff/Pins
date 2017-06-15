@@ -544,10 +544,10 @@ public extension PView {
         var constraints = [NSLayoutConstraint]()
 
         if let height = height {
-            constraints.append(pin(.height, to: anchor(height, for: .height)))
+            constraints.append(pin(.height, to: height))
         }
         if let width = width {
-            constraints.append(pin(.width, to: anchor(width, for: .width)))
+            constraints.append(pin(.width, to: width))
         }
 
         return constraints
