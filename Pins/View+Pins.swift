@@ -124,6 +124,90 @@ public extension PView {
         return constraints
     }
 
+    /// Pin view horizontal anchors to the specified anchors. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
+    ///
+    /// - Parameters:
+    ///   - leading: Optional anchor to pin the leading of the view to. Must be a `NSLayoutXAxisAnchor`.
+    ///   - trailing: Optional anchor to pin the trailing of the view to. Must be a `NSLayoutXAxisAnchor`.
+    ///   - padding: Optional padding to add between the anchors.
+    /// - Returns: Array of activated `NSLayoutConstraint` objects that were created.
+    @discardableResult
+    func pin(leadingTo leading: NSLayoutAnchor<NSLayoutXAxisAnchor>, trailingTo trailing: NSLayoutAnchor<NSLayoutXAxisAnchor>, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
+
+        return [pin(.leading, to: leading, padding: padding),
+                pin(.trailing, to: trailing, padding: padding)]
+    }
+
+    /// Pin view horizontal anchors to the corresponding anchors on the specified views. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
+    ///
+    /// - Parameters:
+    ///   - leading: Optional view to pin the leading of this view to. Must be a `View`.
+    ///   - trailing: Optional view to pin the trailing of this view to. Must be a `View`.
+    ///   - padding: Optional padding to add between the anchors.
+    /// - Returns: Array of activated `NSLayoutConstraint` objects that were created.
+    @discardableResult
+    func pin<View:PView>(leadingTo leading: View, trailingTo trailing: View, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
+
+        return [pin(.leading, to: leading, padding: padding),
+                pin(.trailing, to: trailing, padding: padding)]
+    }
+
+    /// Pin view horizontal anchors to the specified anchors. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
+    ///
+    /// - Parameters:
+    ///   - left: Optional anchor to pin the left of the view to. Must be a `NSLayoutXAxisAnchor`.
+    ///   - right: Optional anchor to pin the right of the view to. Must be a `NSLayoutXAxisAnchor`.
+    ///   - padding: Optional padding to add between the anchors.
+    /// - Returns: Array of activated `NSLayoutConstraint` objects that were created.
+    @discardableResult
+    func pin(leftTo left: NSLayoutAnchor<NSLayoutXAxisAnchor>, rightTo right: NSLayoutAnchor<NSLayoutXAxisAnchor>, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
+
+        return [pin(.left, to: left, padding: padding),
+                pin(.right, to: right, padding: padding)]
+    }
+
+    /// Pin view horizontal anchors to the corresponding anchors on the specified views. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
+    ///
+    /// - Parameters:
+    ///   - left: Optional view to pin the left of this view to. Must be a `View`.
+    ///   - right: Optional view to pin the right of this view to. Must be a `View`.
+    ///   - padding: Optional padding to add between the anchors.
+    /// - Returns: Array of activated `NSLayoutConstraint` objects that were created.
+    @discardableResult
+    func pin<View:PView>(leftTo left: View, rightTo right: View, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
+
+        return [pin(.left, to: left, padding: padding),
+                pin(.right, to: right, padding: padding)]
+    }
+
+    /// Pin view vertical anchors to the specified anchors. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
+    ///
+    /// - Parameters:
+    ///   - top: Optional anchor to pin the top of the view to. Must be a `NSLayoutYAxisAnchor`.
+    ///   - bottom: Optional anchor to pin the right of the view to. Must be a `NSLayoutYAxisAnchor`.
+    ///   - padding: Optional padding to add between the anchors.
+    /// - Returns: Array of activated `NSLayoutConstraint` objects that were created.
+    @discardableResult
+    func pin(topTo top: NSLayoutAnchor<NSLayoutYAxisAnchor>, bottomTo bottom: NSLayoutAnchor<NSLayoutYAxisAnchor>, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
+
+        return [pin(.top, to: top, padding: padding),
+                pin(.bottom, to: bottom, padding: padding)]
+    }
+
+    /// Pin view vertical anchors to the corresponding anchors on the specified views. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
+    ///
+    /// - Parameters:
+    ///   - top: Optional view to pin the top of this view to. Must be a `View`.
+    ///   - bottom: Optional view to pin the bottom of this view to. Must be a `View`.
+    ///   - padding: Optional padding to add between the anchors.
+    /// - Returns: Array of activated `NSLayoutConstraint` objects that were created.
+    @discardableResult
+    func pin<View: PView>(topTo top: View, bottomTo bottom: View, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
+
+        return [pin(.top, to: top, padding: padding),
+                pin(.bottom, to: bottom, padding: padding)]
+    }
+
     /// Pin the specified `HorizontalAnchor` of the view equal to another anchor. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
     ///
     /// - Parameters:
