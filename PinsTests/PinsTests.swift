@@ -692,6 +692,21 @@ class PinsTests: XCTestCase {
         XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 10, width: 0, height: 0))
     }
 
+    func testPinDimensionAnchor() {
+        evaluateConstraints {
+            nestedView.pin(.width, to: mainView.widthAnchor)
+        }
+
+        XCTAssertEqual(nestedView.constraints.count, 0)
+        XCTAssertEqual(mainView.constraints.count, 1)
+
+        let constraint = mainView.constraints.first!
+
+        AssertConstraint(constraint, relation: .equal, firstAttribute: .width, secondAttribute: .width)
+
+        XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: CGFloat(mainViewWidth), height: 0))
+    }
+
     func testPinDimensionAnchorLessThan() {
         evaluateConstraints {
             nestedView.pin(.width, lessThanOrEqualTo: mainView.widthAnchor)
