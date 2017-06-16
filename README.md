@@ -43,6 +43,11 @@ nestedView.pin(height: 20, width: 10)
 // Pin top with padding, 1 constraint with constant of 10 created and activated
 nestedView.pin(.top, to: mainView.topAnchor, padding: 10)
 let topConstraint = nestedView.pin(.top, to: mainView, padding: 10) // same as above
+
+// Pin to UILayout guides
+let space = UILayoutGuide()
+mainView.addLayoutGuide(space)
+nestedView.pin(.right, to: space.leftAnchor, padding: 10)
 ```
 
 - When you call `pin` on a `View` we set `translatesAutoresizingMaskIntoConstraints` to `false` so you don't need to.
