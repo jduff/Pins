@@ -115,10 +115,10 @@ public extension Pinnable where Self: Pinnable {
     /// Pin view boundries to the corresponding anchors on the specified views. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
     ///
     /// - Parameters:
-    ///   - leading: Optional view to pin the left of this view to. Must be a `View`.
-    ///   - top: Optional view to pin the top of this view to. Must be a `View`.
-    ///   - trailing: Optional view to pin the right of this view to. Must be a `View`.
-    ///   - bottom: Optional view to pin the bottom of this view to. Must be a `View`.
+    ///   - leading: Optional view to pin the left of this view to. Must be a `View` or `LayoutGuide`.
+    ///   - top: Optional view to pin the top of this view to. Must be a `View` or `LayoutGuide`.
+    ///   - trailing: Optional view to pin the right of this view to. Must be a `View` or `LayoutGuide`.
+    ///   - bottom: Optional view to pin the bottom of this view to. Must be a `View` or `LayoutGuide`.
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: Array of activated `NSLayoutConstraint` objects that were created.
     @discardableResult
@@ -144,7 +144,7 @@ public extension Pinnable where Self: Pinnable {
     /// Pin view boundries to the specified view. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
     ///
     /// - Parameters:
-    ///   - view: View to pin this view to. Must be a `View`.
+    ///   - view: View to pin this view to. Must be a `View` or `LayoutGuide`.
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: Array of activated `NSLayoutConstraint` objects that were created.
     @discardableResult
@@ -176,12 +176,11 @@ public extension Pinnable where Self: Pinnable {
     /// Pin view horizontal anchors to the corresponding anchors on the specified views. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
     ///
     /// - Parameters:
-    ///   - leading: Optional view to pin the leading of this view to. Must be a `View`.
-    ///   - trailing: Optional view to pin the trailing of this view to. Must be a `View`.
+    ///   - leading: Optional view to pin the leading of this view to. Must be a `View` or `LayoutGuide`.
+    ///   - trailing: Optional view to pin the trailing of this view to. Must be a `View` or `LayoutGuide`.
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: Array of activated `NSLayoutConstraint` objects that were created.
     @discardableResult
-
     public func pin<View:Pinnable>(leadingTo leading: View, trailingTo trailing: View, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
 
         return [pin(.leading, to: leading, padding: padding),
@@ -205,12 +204,11 @@ public extension Pinnable where Self: Pinnable {
     /// Pin view horizontal anchors to the corresponding anchors on the specified views. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
     ///
     /// - Parameters:
-    ///   - left: Optional view to pin the left of this view to. Must be a `View`.
-    ///   - right: Optional view to pin the right of this view to. Must be a `View`.
+    ///   - left: Optional view to pin the left of this view to. Must be a `View` or `LayoutGuide`.
+    ///   - right: Optional view to pin the right of this view to. Must be a `View` or `LayoutGuide`.
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: Array of activated `NSLayoutConstraint` objects that were created.
     @discardableResult
-
     public func pin<View: Pinnable>(leftTo left: View, rightTo right: View, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
 
         return [pin(.left, to: left, padding: padding),
@@ -234,8 +232,8 @@ public extension Pinnable where Self: Pinnable {
     /// Pin view vertical anchors to the corresponding anchors on the specified views. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
     ///
     /// - Parameters:
-    ///   - top: Optional view to pin the top of this view to. Must be a `View`.
-    ///   - bottom: Optional view to pin the bottom of this view to. Must be a `View`.
+    ///   - top: Optional view to pin the top of this view to. Must be a `View` or `LayoutGuide`.
+    ///   - bottom: Optional view to pin the bottom of this view to. Must be a `View` or `LayoutGuide`.
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: Array of activated `NSLayoutConstraint` objects that were created.
     @discardableResult
@@ -296,7 +294,7 @@ public extension Pinnable where Self: Pinnable {
     ///
     /// - Parameters:
     ///   - edge: `HorizontalAnchor` of the caller to pin to. One of `leading`, `trailing`, `left`, `right` or `centerX`.
-    ///   - view: View to pin the caller to. Pins to the same anchor as `edge`. Must be a `View`.
+    ///   - view: View to pin the caller to. Pins to the same anchor as `edge`. Must be a `View` or `LayoutGuide`.
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
@@ -311,7 +309,7 @@ public extension Pinnable where Self: Pinnable {
     ///
     /// - Parameters:
     ///   - edge: `HorizontalAnchor` of the caller to pin to. One of `leading`, `trailing`, `left`, `right` or `centerX`.
-    ///   - view: View to pin the caller to. Pins to the same anchor as `edge`. Must be a `View`.
+    ///   - view: View to pin the caller to. Pins to the same anchor as `edge`. Must be a `View` or `LayoutGuide`.
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
@@ -326,7 +324,7 @@ public extension Pinnable where Self: Pinnable {
     ///
     /// - Parameters:
     ///   - edge: `HorizontalAnchor` of the caller to pin to. One of `leading`, `trailing`, `left`, `right` or `centerX`.
-    ///   - view: View to pin the caller to. Pins to the same anchor as `edge`. Must be a `View`.
+    ///   - view: View to pin the caller to. Pins to the same anchor as `edge`. Must be a `View` or `LayoutGuide`.
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
@@ -386,7 +384,7 @@ public extension Pinnable where Self: Pinnable {
     ///
     /// - Parameters:
     ///   - edge: `VerticalAnchor` of the caller to pin to. One of `top`, `bottom`, `centerY`, `firstBaseline` or `lastBaseline`.
-    ///   - view: View to pin the caller to. Pins to the same anchor as `edge`. Must be a `View`.
+    ///   - view: View to pin the caller to. Pins to the same anchor as `edge`. Must be a `View` or `LayoutGuide`.
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
@@ -401,7 +399,7 @@ public extension Pinnable where Self: Pinnable {
     ///
     /// - Parameters:
     ///   - edge: `VerticalAnchor` of the caller to pin to. One of `top`, `bottom`, `centerY`, `firstBaseline` or `lastBaseline`.
-    ///   - view: View to pin the caller to. Pins to the same anchor as `edge`. Must be a `View`.
+    ///   - view: View to pin the caller to. Pins to the same anchor as `edge`. Must be a `View` or `LayoutGuide`.
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
@@ -416,7 +414,7 @@ public extension Pinnable where Self: Pinnable {
     ///
     /// - Parameters:
     ///   - edge: `VerticalAnchor` of the caller to pin to. One of `top`, `bottom`, `centerY`, `firstBaseline` or `lastBaseline`.
-    ///   - view: View to pin the caller to. Pins to the same anchor as `edge`. Must be a `View`.
+    ///   - view: View to pin the caller to. Pins to the same anchor as `edge`. Must be a `View` or `LayoutGuide`.
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
@@ -473,7 +471,7 @@ public extension Pinnable where Self: Pinnable {
     ///
     /// - Parameters:
     ///   - dimension: `DimensionAnchor` of the caller to pin to. Either `width` or `height`.
-    ///   - view: View to pin the caller to. Pins to the same anchor as `edge`. Must be a `View`.
+    ///   - view: View to pin the caller to. Pins to the same anchor as `edge`. Must be a `View` or `LayoutGuide`.
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
@@ -487,7 +485,7 @@ public extension Pinnable where Self: Pinnable {
     ///
     /// - Parameters:
     ///   - dimension: `DimensionAnchor` of the caller to pin to. Either `width` or `height`.
-    ///   - view: View to pin the caller to. Pins to the same anchor as `edge`. Must be a `View`.
+    ///   - view: View to pin the caller to. Pins to the same anchor as `edge`. Must be a `View` or `LayoutGuide`.
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
@@ -501,7 +499,7 @@ public extension Pinnable where Self: Pinnable {
     ///
     /// - Parameters:
     ///   - dimension: `DimensionAnchor` of the caller to pin to. Either `width` or `height`.
-    ///   - view: View to pin the caller to. Pins to the same anchor as `edge`. Must be a `View`.
+    ///   - view: View to pin the caller to. Pins to the same anchor as `edge`. Must be a `View` or `LayoutGuide`.
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
