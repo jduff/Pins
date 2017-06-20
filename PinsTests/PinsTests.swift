@@ -457,6 +457,8 @@ class PinsTests: XCTestCase {
 
         XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 0, height: CGFloat(mainViewHeight)))
     }
+    
+    // MARK: Horizontal Anchor Tests
 
     func testPinHorizontalAnchorLessThan() {
         evaluateConstraints {
@@ -579,6 +581,8 @@ class PinsTests: XCTestCase {
         XCTAssertEqual(nestedView.frame, CGRect(x: 10, y: 0, width: 0, height: 0))
     }
 
+    // MARK: Vertical Anchor Tests
+    
     func testPinVerticalAnchorLessThan() {
         evaluateConstraints {
             nestedView.pin(.top, lessThanOrEqualTo: mainView.topAnchor)
@@ -699,6 +703,38 @@ class PinsTests: XCTestCase {
         XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 10, width: 0, height: 0))
     }
 
+    // MARK: Dimension Anchor Tests
+    
+    func testPinDimensionToView() {
+        evaluateConstraints {
+            nestedView.pin(.width, to: mainView)
+        }
+        
+        XCTAssertEqual(nestedView.constraints.count, 0)
+        XCTAssertEqual(mainView.constraints.count, 1)
+        
+        let constraint = mainView.constraints.first!
+        
+        AssertConstraint(constraint, relation: .equal, firstAttribute: .width, secondAttribute: .width)
+        
+        XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: CGFloat(mainViewWidth), height: 0))
+    }
+    
+    func testPinDimensionToViewWithMultiplier() {
+        evaluateConstraints {
+            nestedView.pin(.width, to: mainView, padding: 0.0, multiplier: 0.5)
+        }
+        
+        XCTAssertEqual(nestedView.constraints.count, 0)
+        XCTAssertEqual(mainView.constraints.count, 1)
+        
+        let constraint = mainView.constraints.first!
+        
+        AssertConstraint(constraint, relation: .equal, firstAttribute: .width, secondAttribute: .width, constant: 0.0, multiplier: 0.5)
+        
+        XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: CGFloat(mainViewWidth) * 0.5, height: 0))
+    }
+    
     func testPinDimensionAnchor() {
         evaluateConstraints {
             nestedView.pin(.width, to: mainView.widthAnchor)
@@ -712,6 +748,21 @@ class PinsTests: XCTestCase {
         AssertConstraint(constraint, relation: .equal, firstAttribute: .width, secondAttribute: .width)
 
         XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: CGFloat(mainViewWidth), height: 0))
+    }
+    
+    func testPinDimensionAnchorWithMultiplier() {
+        evaluateConstraints {
+            nestedView.pin(.width, to: mainView.widthAnchor, padding: 0.0, multiplier: 0.5)
+        }
+        
+        XCTAssertEqual(nestedView.constraints.count, 0)
+        XCTAssertEqual(mainView.constraints.count, 1)
+        
+        let constraint = mainView.constraints.first!
+        
+        AssertConstraint(constraint, relation: .equal, firstAttribute: .width, secondAttribute: .width, constant: 0, multiplier: 0.5)
+        
+        XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: CGFloat(mainViewWidth) * 0.5, height: 0))
     }
 
     func testPinDimensionAnchorLessThan() {
@@ -728,6 +779,22 @@ class PinsTests: XCTestCase {
 
         XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 0, height: 0))
     }
+    
+    func testPinDimensionAnchorLessThanWithMultiplier() {
+        evaluateConstraints {
+            nestedView.pin(.width, lessThanOrEqualTo: mainView.widthAnchor, padding: 0.0, multiplier: 0.5)
+        }
+        
+        XCTAssertEqual(nestedView.constraints.count, 0)
+        XCTAssertEqual(mainView.constraints.count, 1)
+        
+        let constraint = mainView.constraints.first!
+        
+        AssertConstraint(constraint, relation: .lessThanOrEqual, firstAttribute: .width, secondAttribute: .width, constant: 0.0, multiplier: 0.5)
+        
+        XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 0, height: 0))
+
+    }
 
     func testPinDimensionAnchorToViewLessThan() {
         evaluateConstraints {
@@ -741,6 +808,21 @@ class PinsTests: XCTestCase {
 
         AssertConstraint(constraint, relation: .lessThanOrEqual, firstAttribute: .width, secondAttribute: .width)
 
+        XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 0, height: 0))
+    }
+    
+    func testPinDimensionAnchorToViewLessThanWithMultiplier() {
+        evaluateConstraints {
+            nestedView.pin(.width, lessThanOrEqualTo: mainView, padding: 0.0, multiplier: 0.5)
+        }
+        
+        XCTAssertEqual(nestedView.constraints.count, 0)
+        XCTAssertEqual(mainView.constraints.count, 1)
+        
+        let constraint = mainView.constraints.first!
+        
+        AssertConstraint(constraint, relation: .lessThanOrEqual, firstAttribute: .width, secondAttribute: .width, constant: 0.0, multiplier: 0.5)
+        
         XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 0, height: 0))
     }
 
@@ -773,6 +855,21 @@ class PinsTests: XCTestCase {
 
         XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: CGFloat(mainViewWidth), height: 0))
     }
+    
+    func testPinDimensionAnchorGreaterThanWithMultiplier() {
+        evaluateConstraints {
+            nestedView.pin(.width, greaterThanOrEqualTo: mainView.widthAnchor, padding: 0, multiplier: 0.5)
+        }
+        
+        XCTAssertEqual(nestedView.constraints.count, 0)
+        XCTAssertEqual(mainView.constraints.count, 1)
+        
+        let constraint = mainView.constraints.first!
+        
+        AssertConstraint(constraint, relation: .greaterThanOrEqual, firstAttribute: .width, secondAttribute: .width, constant: 0.0, multiplier: 0.5)
+        
+        XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: CGFloat(mainViewWidth) * 0.5, height: 0))
+    }
 
     func testPinDimensionAnchorToViewGreaterThan() {
         evaluateConstraints {
@@ -787,6 +884,21 @@ class PinsTests: XCTestCase {
         AssertConstraint(constraint, relation: .greaterThanOrEqual, firstAttribute: .width, secondAttribute: .width)
 
         XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: CGFloat(mainViewWidth), height: 0))
+    }
+    
+    func testPinDimensionAnchorToViewGreaterThanWithMultiplier() {
+        evaluateConstraints {
+            nestedView.pin(.width, greaterThanOrEqualTo: mainView, padding: 0, multiplier: 0.5)
+        }
+        
+        XCTAssertEqual(nestedView.constraints.count, 0)
+        XCTAssertEqual(mainView.constraints.count, 1)
+        
+        let constraint = mainView.constraints.first!
+        
+        AssertConstraint(constraint, relation: .greaterThanOrEqual, firstAttribute: .width, secondAttribute: .width, constant: 0.0, multiplier: 0.5)
+        
+        XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: CGFloat(mainViewWidth) * 0.5, height: 0))
     }
 
     func testPinDimensionAnchorGreaterThanConstant() {
@@ -803,7 +915,7 @@ class PinsTests: XCTestCase {
 
         XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 10, height: 0))
     }
-
+    
     func testPinToLayoutGuide() {
         evaluateConstraints {
             nestedView.pin(.left, to: mainView)
@@ -848,7 +960,7 @@ class PinsTests: XCTestCase {
         evaluateConstraints(for: mainView)
     }
 
-    private func AssertConstraint(_ constraint: NSLayoutConstraint, relation: NSLayoutRelation, firstAttribute: NSLayoutAttribute? = nil, secondAttribute: NSLayoutAttribute? = nil, constant: CGFloat? = nil) {
+    private func AssertConstraint(_ constraint: NSLayoutConstraint, relation: NSLayoutRelation, firstAttribute: NSLayoutAttribute? = nil, secondAttribute: NSLayoutAttribute? = nil, constant: CGFloat? = nil, multiplier: CGFloat? = nil) {
         XCTAssertTrue(constraint.isActive)
         XCTAssertEqual(constraint.relation, relation)
         if let firstAttribute = firstAttribute {
@@ -859,6 +971,12 @@ class PinsTests: XCTestCase {
         }
         if let constant = constant {
             XCTAssertEqual(constraint.constant, constant)
+        }
+        if let multiplier = multiplier {
+            XCTAssertEqual(constraint.multiplier, multiplier)
+        }
+        else {
+            XCTAssertEqual(constraint.multiplier, 1.0)
         }
     }
 
