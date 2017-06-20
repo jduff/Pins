@@ -302,10 +302,7 @@ public extension Pinnable where Self: Pinnable {
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
     public func pin<View: Pinnable>(_ edge: HorizontalAnchor, to view: View, padding: CGFloat = 0.0) -> NSLayoutConstraint {
-        let constraint = anchor(self, for: edge).constraint(equalTo: anchor(view, for: edge),
-                                                            constant: convertPadding(edge, padding))
-
-        return disableTranslatesAutoresizingMaskAndActivate(constraint)
+        return pin(edge, to: anchor(view, for: edge), padding: padding)
     }
 
     /// Pin the specified `HorizontalAnchor` of the view less than or equal to the same anchor on another view. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
@@ -317,10 +314,7 @@ public extension Pinnable where Self: Pinnable {
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
     public func pin<View: Pinnable>(_ edge: HorizontalAnchor, lessThanOrEqualTo view: View, padding: CGFloat = 0.0) -> NSLayoutConstraint {
-        let constraint = anchor(self, for: edge).constraint(lessThanOrEqualTo: anchor(view, for: edge),
-                                                            constant: convertPadding(edge, padding))
-
-        return disableTranslatesAutoresizingMaskAndActivate(constraint)
+        return pin(edge, lessThanOrEqualTo: anchor(view, for: edge), padding: padding)
     }
 
     /// Pin the specified `HorizontalAnchor` of the view greater than equal to the same anchor on another view. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
@@ -332,10 +326,7 @@ public extension Pinnable where Self: Pinnable {
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
     public func pin<View: Pinnable>(_ edge: HorizontalAnchor, greaterThanOrEqualTo view: View, padding: CGFloat = 0.0) -> NSLayoutConstraint {
-        let constraint = anchor(self, for: edge).constraint(greaterThanOrEqualTo: anchor(view, for: edge),
-                                                            constant: convertPadding(edge, padding))
-
-        return disableTranslatesAutoresizingMaskAndActivate(constraint)
+        return pin(edge, greaterThanOrEqualTo: anchor(view, for: edge), padding: padding)
     }
     
     // MARK: Vertical Anchors
@@ -394,10 +385,7 @@ public extension Pinnable where Self: Pinnable {
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
     public func pin<View: Pinnable>(_ edge: VerticalAnchor, to view: View, padding: CGFloat = 0.0) -> NSLayoutConstraint {
-        let constraint = anchor(self, for: edge).constraint(equalTo: anchor(view, for: edge),
-                                                            constant: convertPadding(edge, padding))
-
-        return disableTranslatesAutoresizingMaskAndActivate(constraint)
+        return pin(edge, to: anchor(view, for: edge), padding: padding)
     }
 
     /// Pin the specified `VerticalAnchor` of the view less than or equal to the same anchor on another view. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
@@ -409,10 +397,7 @@ public extension Pinnable where Self: Pinnable {
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
     public func pin<View: Pinnable>(_ edge: VerticalAnchor, lessThanOrEqualTo view: View, padding: CGFloat = 0.0) -> NSLayoutConstraint {
-        let constraint = anchor(self, for: edge).constraint(lessThanOrEqualTo: anchor(view, for: edge),
-                                                            constant: convertPadding(edge, padding))
-
-        return disableTranslatesAutoresizingMaskAndActivate(constraint)
+        return pin(edge, lessThanOrEqualTo: anchor(view, for: edge), padding: padding)
     }
 
     /// Pin the specified `VerticalAnchor` of the view greater than or equal to the same anchor on another view. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
@@ -424,10 +409,7 @@ public extension Pinnable where Self: Pinnable {
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
     public func pin<View: Pinnable>(_ edge: VerticalAnchor, greaterThanOrEqualTo view: View, padding: CGFloat = 0.0) -> NSLayoutConstraint {
-        let constraint = anchor(self, for: edge).constraint(greaterThanOrEqualTo: anchor(view, for: edge),
-                                                            constant: convertPadding(edge, padding))
-
-        return disableTranslatesAutoresizingMaskAndActivate(constraint)
+        return pin(edge, greaterThanOrEqualTo: anchor(view, for: edge), padding: padding)
     }
     
     // MARK: Dimension Anchors
