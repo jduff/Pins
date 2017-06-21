@@ -48,6 +48,14 @@ let topConstraint = nestedView.pin(.top, to: mainView, padding: 10) // same as a
 let space = UILayoutGuide()
 mainView.addLayoutGuide(space)
 nestedView.pin(.right, to: space.leftAnchor, padding: 10)
+
+// Animate a constraint
+let top = nestedView.pin(.top, to: mainView) // returns a NSLayoutConstraint that you can use later on
+
+top.constant = 30
+UIView.animateWithDuration(0.3) {
+    self.layoutIfNeeded()
+}
 ```
 
 - When you call `pin` on a `View` we set `translatesAutoresizingMaskIntoConstraints` to `false` so you don't need to.
