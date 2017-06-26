@@ -1,0 +1,8 @@
+sudo: false
+osx_image: xcode8
+language: swift
+xcode_project: Pins.xcodeproj
+
+script:
+    - xcodebuild test -project Pins.xcodeproj -scheme Pins_iOS -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.0'
+        - xcodebuild test -project Pins.xcodeproj -scheme Pins_MacOS -destination 'platform=OS X,arch=x86_64'
