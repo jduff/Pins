@@ -1,4 +1,7 @@
 # Pins
+
+[![Build Status](https://travis-ci.org/jduff/Pins.svg?branch=master)](https://travis-ci.org/jduff/Pins)
+
 Simple API for Auto Layout interfaces. Works with iOS and macOS.
 
 Pins takes care of the mundane and simplifies the code you need to write whenever possible. You don't need to set `translatesAutoresizingMaskIntoConstraints` to `false` all over the place, calling `pin` will do that for you. You probably want the constraints you just created to be activated so Pins will do that for you too. Needing to negate padding when creating constraints to `right`, `bottom` or `trailing` anchors isn't intuitive so pins will take care of that. If Pins doesn't do everything you need or you need to reference the constraints later no problem, they are returned whenever you call `pin` so you can have full control.
