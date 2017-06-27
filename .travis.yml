@@ -1,8 +1,9 @@
 sudo: false
-osx_image: xcode8
-language: swift
+osx_image: xcode8.3
+xcode_sdk: iphonesimulator10.3
+language: objective-c
 xcode_project: Pins.xcodeproj
 
 script:
-    - xcodebuild test -project Pins.xcodeproj -scheme Pins_iOS -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.0'
-        - xcodebuild test -project Pins.xcodeproj -scheme Pins_MacOS -destination 'platform=OS X,arch=x86_64'
+  - xcodebuild test -project Pins.xcodeproj -scheme Pins_iOS -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.3.1'
+  - xcodebuild test -project Pins.xcodeproj -scheme Pins_macOS -destination 'platform=OS X,arch=x86_64'
