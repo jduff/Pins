@@ -777,7 +777,7 @@ class PinsTests: XCTestCase {
 
         AssertConstraint(constraint, relation: .lessThanOrEqual, firstAttribute: .width, secondAttribute: .width)
 
-        XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 0, height: 0))
+        XCTAssert(nestedView.frame.width <= 100)
     }
     
     func testPinDimensionAnchorLessThanWithMultiplier() {
@@ -792,7 +792,7 @@ class PinsTests: XCTestCase {
         
         AssertConstraint(constraint, relation: .lessThanOrEqual, firstAttribute: .width, secondAttribute: .width, constant: 0.0, multiplier: 0.5)
         
-        XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 0, height: 0))
+        XCTAssert(nestedView.frame.width <= 50)
 
     }
 
@@ -808,7 +808,7 @@ class PinsTests: XCTestCase {
 
         AssertConstraint(constraint, relation: .lessThanOrEqual, firstAttribute: .width, secondAttribute: .width)
 
-        XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 0, height: 0))
+        XCTAssert(nestedView.frame.width <= 100)
     }
     
     func testPinDimensionAnchorToViewLessThanWithMultiplier() {
@@ -823,7 +823,7 @@ class PinsTests: XCTestCase {
         
         AssertConstraint(constraint, relation: .lessThanOrEqual, firstAttribute: .width, secondAttribute: .width, constant: 0.0, multiplier: 0.5)
         
-        XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 0, height: 0))
+        XCTAssert(nestedView.frame.width <= 50)
     }
 
     func testPinDimensionAnchorLessThanConstant() {
@@ -838,7 +838,7 @@ class PinsTests: XCTestCase {
 
         AssertConstraint(constraint, relation: .lessThanOrEqual, firstAttribute: .width, secondAttribute: .notAnAttribute, constant: 50)
 
-        XCTAssertEqual(nestedView.frame, CGRect(x: 0, y: 0, width: 0, height: 0))
+        XCTAssert(nestedView.frame.width <= 50)
     }
 
     func testPinDimensionAnchorGreaterThan() {
@@ -960,7 +960,7 @@ class PinsTests: XCTestCase {
         evaluateConstraints(for: mainView)
     }
 
-    private func AssertConstraint(_ constraint: NSLayoutConstraint, relation: NSLayoutRelation, firstAttribute: NSLayoutAttribute? = nil, secondAttribute: NSLayoutAttribute? = nil, constant: CGFloat? = nil, multiplier: CGFloat? = nil) {
+    private func AssertConstraint(_ constraint: NSLayoutConstraint, relation: NSLayoutConstraint.Relation, firstAttribute: NSLayoutConstraint.Attribute? = nil, secondAttribute: NSLayoutConstraint.Attribute? = nil, constant: CGFloat? = nil, multiplier: CGFloat? = nil) {
         XCTAssertTrue(constraint.isActive)
         XCTAssertEqual(constraint.relation, relation)
         if let firstAttribute = firstAttribute {

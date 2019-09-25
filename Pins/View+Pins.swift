@@ -82,7 +82,7 @@ public extension Pinnable {
     extension NSLayoutGuide: Pinnable {}
 #endif
 
-public extension Pinnable where Self: Pinnable {
+public extension Pinnable {
     // MARK: Convenience Pinning Methods
     
     /// Pin view boundries to the specified anchors. Calling this method sets `translatesAutoresizingMaskIntoConstraints` to `false` on the caller.
@@ -95,7 +95,7 @@ public extension Pinnable where Self: Pinnable {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: Array of activated `NSLayoutConstraint` objects that were created.
     @discardableResult
-    public func pin(leadingTo leading: NSLayoutAnchor<NSLayoutXAxisAnchor>?, topTo top: NSLayoutAnchor<NSLayoutYAxisAnchor>?, trailingTo trailing: NSLayoutAnchor<NSLayoutXAxisAnchor>?, bottomTo bottom: NSLayoutAnchor<NSLayoutYAxisAnchor>?, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
+    func pin(leadingTo leading: NSLayoutAnchor<NSLayoutXAxisAnchor>?, topTo top: NSLayoutAnchor<NSLayoutYAxisAnchor>?, trailingTo trailing: NSLayoutAnchor<NSLayoutXAxisAnchor>?, bottomTo bottom: NSLayoutAnchor<NSLayoutYAxisAnchor>?, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
         var constraints = [NSLayoutConstraint]()
 
         if let leading = leading {
@@ -124,7 +124,7 @@ public extension Pinnable where Self: Pinnable {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: Array of activated `NSLayoutConstraint` objects that were created.
     @discardableResult
-    public func pin<View: Pinnable>(leadingTo leading: View?, topTo top: View?, trailingTo trailing: View?, bottomTo bottom: View?, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
+    func pin<View: Pinnable>(leadingTo leading: View?, topTo top: View?, trailingTo trailing: View?, bottomTo bottom: View?, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
         var constraints = [NSLayoutConstraint]()
 
         if let leading = leading {
@@ -150,7 +150,7 @@ public extension Pinnable where Self: Pinnable {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: Array of activated `NSLayoutConstraint` objects that were created.
     @discardableResult
-    public func pin<View: Pinnable>(to view: View, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
+    func pin<View: Pinnable>(to view: View, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
         var constraints = [NSLayoutConstraint]()
 
         constraints.append(pin(.leading, to: view, padding: padding))
@@ -169,7 +169,7 @@ public extension Pinnable where Self: Pinnable {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: Array of activated `NSLayoutConstraint` objects that were created.
     @discardableResult
-    public func pin(leadingTo leading: NSLayoutAnchor<NSLayoutXAxisAnchor>, trailingTo trailing: NSLayoutAnchor<NSLayoutXAxisAnchor>, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
+    func pin(leadingTo leading: NSLayoutAnchor<NSLayoutXAxisAnchor>, trailingTo trailing: NSLayoutAnchor<NSLayoutXAxisAnchor>, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
 
         return [pin(.leading, to: leading, padding: padding),
                 pin(.trailing, to: trailing, padding: padding)]
@@ -183,7 +183,7 @@ public extension Pinnable where Self: Pinnable {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: Array of activated `NSLayoutConstraint` objects that were created.
     @discardableResult
-    public func pin<View:Pinnable>(leadingTo leading: View, trailingTo trailing: View, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
+    func pin<View:Pinnable>(leadingTo leading: View, trailingTo trailing: View, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
 
         return [pin(.leading, to: leading, padding: padding),
                 pin(.trailing, to: trailing, padding: padding)]
@@ -197,7 +197,7 @@ public extension Pinnable where Self: Pinnable {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: Array of activated `NSLayoutConstraint` objects that were created.
     @discardableResult
-    public func pin(leftTo left: NSLayoutAnchor<NSLayoutXAxisAnchor>, rightTo right: NSLayoutAnchor<NSLayoutXAxisAnchor>, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
+    func pin(leftTo left: NSLayoutAnchor<NSLayoutXAxisAnchor>, rightTo right: NSLayoutAnchor<NSLayoutXAxisAnchor>, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
 
         return [pin(.left, to: left, padding: padding),
                 pin(.right, to: right, padding: padding)]
@@ -211,7 +211,7 @@ public extension Pinnable where Self: Pinnable {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: Array of activated `NSLayoutConstraint` objects that were created.
     @discardableResult
-    public func pin<View: Pinnable>(leftTo left: View, rightTo right: View, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
+    func pin<View: Pinnable>(leftTo left: View, rightTo right: View, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
 
         return [pin(.left, to: left, padding: padding),
                 pin(.right, to: right, padding: padding)]
@@ -225,7 +225,7 @@ public extension Pinnable where Self: Pinnable {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: Array of activated `NSLayoutConstraint` objects that were created.
     @discardableResult
-    public func pin(topTo top: NSLayoutAnchor<NSLayoutYAxisAnchor>, bottomTo bottom: NSLayoutAnchor<NSLayoutYAxisAnchor>, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
+    func pin(topTo top: NSLayoutAnchor<NSLayoutYAxisAnchor>, bottomTo bottom: NSLayoutAnchor<NSLayoutYAxisAnchor>, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
 
         return [pin(.top, to: top, padding: padding),
                 pin(.bottom, to: bottom, padding: padding)]
@@ -239,7 +239,7 @@ public extension Pinnable where Self: Pinnable {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: Array of activated `NSLayoutConstraint` objects that were created.
     @discardableResult
-    public func pin<View: Pinnable>(topTo top: View, bottomTo bottom: View, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
+    func pin<View: Pinnable>(topTo top: View, bottomTo bottom: View, padding: CGFloat = 0.0) -> [NSLayoutConstraint] {
 
         return [pin(.top, to: top, padding: padding),
                 pin(.bottom, to: bottom, padding: padding)]
@@ -255,7 +255,7 @@ public extension Pinnable where Self: Pinnable {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
-    public func pin(_ edge: HorizontalAnchor, to anchorAttachment: NSLayoutAnchor<NSLayoutXAxisAnchor>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
+    func pin(_ edge: HorizontalAnchor, to anchorAttachment: NSLayoutAnchor<NSLayoutXAxisAnchor>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
 
         let constraint = anchor(self, for: edge).constraint(equalTo: anchorAttachment,
                                                             constant: convertPadding(edge, padding))
@@ -271,7 +271,7 @@ public extension Pinnable where Self: Pinnable {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
-    public func pin(_ edge: HorizontalAnchor, lessThanOrEqualTo anchorAttachment: NSLayoutAnchor<NSLayoutXAxisAnchor>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
+    func pin(_ edge: HorizontalAnchor, lessThanOrEqualTo anchorAttachment: NSLayoutAnchor<NSLayoutXAxisAnchor>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
         let constraint = anchor(self, for: edge).constraint(lessThanOrEqualTo: anchorAttachment,
                                                             constant: convertPadding(edge, padding))
 
@@ -286,7 +286,7 @@ public extension Pinnable where Self: Pinnable {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
-    public func pin(_ edge: HorizontalAnchor, greaterThanOrEqualTo anchorAttachment: NSLayoutAnchor<NSLayoutXAxisAnchor>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
+    func pin(_ edge: HorizontalAnchor, greaterThanOrEqualTo anchorAttachment: NSLayoutAnchor<NSLayoutXAxisAnchor>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
         let constraint = anchor(self, for: edge).constraint(greaterThanOrEqualTo: anchorAttachment,
                                                             constant: convertPadding(edge, padding))
 
@@ -301,7 +301,7 @@ public extension Pinnable where Self: Pinnable {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
-    public func pin<View: Pinnable>(_ edge: HorizontalAnchor, to view: View, padding: CGFloat = 0.0) -> NSLayoutConstraint {
+    func pin<View: Pinnable>(_ edge: HorizontalAnchor, to view: View, padding: CGFloat = 0.0) -> NSLayoutConstraint {
         return pin(edge, to: anchor(view, for: edge), padding: padding)
     }
 
@@ -313,7 +313,7 @@ public extension Pinnable where Self: Pinnable {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
-    public func pin<View: Pinnable>(_ edge: HorizontalAnchor, lessThanOrEqualTo view: View, padding: CGFloat = 0.0) -> NSLayoutConstraint {
+    func pin<View: Pinnable>(_ edge: HorizontalAnchor, lessThanOrEqualTo view: View, padding: CGFloat = 0.0) -> NSLayoutConstraint {
         return pin(edge, lessThanOrEqualTo: anchor(view, for: edge), padding: padding)
     }
 
@@ -325,7 +325,7 @@ public extension Pinnable where Self: Pinnable {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
-    public func pin<View: Pinnable>(_ edge: HorizontalAnchor, greaterThanOrEqualTo view: View, padding: CGFloat = 0.0) -> NSLayoutConstraint {
+    func pin<View: Pinnable>(_ edge: HorizontalAnchor, greaterThanOrEqualTo view: View, padding: CGFloat = 0.0) -> NSLayoutConstraint {
         return pin(edge, greaterThanOrEqualTo: anchor(view, for: edge), padding: padding)
     }
     
@@ -339,7 +339,7 @@ public extension Pinnable where Self: Pinnable {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
-    public func pin(_ edge: VerticalAnchor, to anchorAttachment: NSLayoutAnchor<NSLayoutYAxisAnchor>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
+    func pin(_ edge: VerticalAnchor, to anchorAttachment: NSLayoutAnchor<NSLayoutYAxisAnchor>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
         let constraint = anchor(self, for: edge).constraint(equalTo: anchorAttachment,
                                                             constant: convertPadding(edge, padding))
 
@@ -354,7 +354,7 @@ public extension Pinnable where Self: Pinnable {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
-    public func pin(_ edge: VerticalAnchor, lessThanOrEqualTo anchorAttachment: NSLayoutAnchor<NSLayoutYAxisAnchor>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
+    func pin(_ edge: VerticalAnchor, lessThanOrEqualTo anchorAttachment: NSLayoutAnchor<NSLayoutYAxisAnchor>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
         let constraint = anchor(self, for: edge).constraint(lessThanOrEqualTo: anchorAttachment,
                                                             constant: convertPadding(edge, padding))
 
@@ -369,7 +369,7 @@ public extension Pinnable where Self: Pinnable {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
-    public func pin(_ edge: VerticalAnchor, greaterThanOrEqualTo anchorAttachment: NSLayoutAnchor<NSLayoutYAxisAnchor>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
+    func pin(_ edge: VerticalAnchor, greaterThanOrEqualTo anchorAttachment: NSLayoutAnchor<NSLayoutYAxisAnchor>, padding: CGFloat = 0.0) -> NSLayoutConstraint {
         let constraint = anchor(self, for: edge).constraint(greaterThanOrEqualTo: anchorAttachment,
                                                             constant: convertPadding(edge, padding))
 
@@ -384,7 +384,7 @@ public extension Pinnable where Self: Pinnable {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
-    public func pin<View: Pinnable>(_ edge: VerticalAnchor, to view: View, padding: CGFloat = 0.0) -> NSLayoutConstraint {
+    func pin<View: Pinnable>(_ edge: VerticalAnchor, to view: View, padding: CGFloat = 0.0) -> NSLayoutConstraint {
         return pin(edge, to: anchor(view, for: edge), padding: padding)
     }
 
@@ -396,7 +396,7 @@ public extension Pinnable where Self: Pinnable {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
-    public func pin<View: Pinnable>(_ edge: VerticalAnchor, lessThanOrEqualTo view: View, padding: CGFloat = 0.0) -> NSLayoutConstraint {
+    func pin<View: Pinnable>(_ edge: VerticalAnchor, lessThanOrEqualTo view: View, padding: CGFloat = 0.0) -> NSLayoutConstraint {
         return pin(edge, lessThanOrEqualTo: anchor(view, for: edge), padding: padding)
     }
 
@@ -408,7 +408,7 @@ public extension Pinnable where Self: Pinnable {
     ///   - padding: Optional padding to add between the anchors.
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
-    public func pin<View: Pinnable>(_ edge: VerticalAnchor, greaterThanOrEqualTo view: View, padding: CGFloat = 0.0) -> NSLayoutConstraint {
+    func pin<View: Pinnable>(_ edge: VerticalAnchor, greaterThanOrEqualTo view: View, padding: CGFloat = 0.0) -> NSLayoutConstraint {
         return pin(edge, greaterThanOrEqualTo: anchor(view, for: edge), padding: padding)
     }
     
@@ -423,7 +423,7 @@ public extension Pinnable where Self: Pinnable {
     ///   - multiplier: Optional multiplier with a default value of 1.0. When used, the result will be anchorValue * multiplier + constant
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
-    public func pin(_ dimension: DimensionAnchor, to anchorAttachment: NSLayoutAnchor<NSLayoutDimension>, padding: CGFloat = 0.0, multiplier: CGFloat = 1.0) -> NSLayoutConstraint {
+    func pin(_ dimension: DimensionAnchor, to anchorAttachment: NSLayoutAnchor<NSLayoutDimension>, padding: CGFloat = 0.0, multiplier: CGFloat = 1.0) -> NSLayoutConstraint {
         let constraint = anchor(self, for: dimension).constraint(equalTo: anchorAttachment as! NSLayoutDimension, multiplier: multiplier, constant: padding)
 
         return disableTranslatesAutoresizingMaskAndActivate(constraint)
@@ -438,7 +438,7 @@ public extension Pinnable where Self: Pinnable {
     ///   - multiplier: Optional multiplier with a default value of 1.0. When used, the result will be anchorValue * multiplier + constant
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
-    public func pin(_ dimension: DimensionAnchor, lessThanOrEqualTo anchorAttachment: NSLayoutAnchor<NSLayoutDimension>, padding: CGFloat = 0.0, multiplier: CGFloat = 1.0) -> NSLayoutConstraint {
+    func pin(_ dimension: DimensionAnchor, lessThanOrEqualTo anchorAttachment: NSLayoutAnchor<NSLayoutDimension>, padding: CGFloat = 0.0, multiplier: CGFloat = 1.0) -> NSLayoutConstraint {
         let constraint = anchor(self, for: dimension).constraint(lessThanOrEqualTo: anchorAttachment as! NSLayoutDimension, multiplier: multiplier, constant: padding)
 
         return disableTranslatesAutoresizingMaskAndActivate(constraint)
@@ -453,7 +453,7 @@ public extension Pinnable where Self: Pinnable {
     ///   - multiplier: Optional multiplier with a default value of 1.0. When used, the result will be anchorValue * multiplier + constant
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
-    public func pin(_ dimension: DimensionAnchor, greaterThanOrEqualTo anchorAttachment: NSLayoutAnchor<NSLayoutDimension>, padding: CGFloat = 0.0, multiplier: CGFloat = 1.0) -> NSLayoutConstraint {
+    func pin(_ dimension: DimensionAnchor, greaterThanOrEqualTo anchorAttachment: NSLayoutAnchor<NSLayoutDimension>, padding: CGFloat = 0.0, multiplier: CGFloat = 1.0) -> NSLayoutConstraint {
         let constraint = anchor(self, for: dimension).constraint(greaterThanOrEqualTo: anchorAttachment as! NSLayoutDimension, multiplier: multiplier, constant: padding)
 
         return disableTranslatesAutoresizingMaskAndActivate(constraint)
@@ -468,7 +468,7 @@ public extension Pinnable where Self: Pinnable {
     ///   - multiplier: Optional multiplier with a default value of 1.0. When used, the result will be anchorValue * multiplier + constant
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
-    public func pin<View: Pinnable>(_ dimension: DimensionAnchor, to view: View, padding: CGFloat = 0.0, multiplier: CGFloat = 1.0) -> NSLayoutConstraint {
+    func pin<View: Pinnable>(_ dimension: DimensionAnchor, to view: View, padding: CGFloat = 0.0, multiplier: CGFloat = 1.0) -> NSLayoutConstraint {
         return pin(dimension, to: anchor(view, for: dimension), padding: padding, multiplier: multiplier)
     }
 
@@ -481,7 +481,7 @@ public extension Pinnable where Self: Pinnable {
     ///   - multiplier: Optional multiplier with a default value of 1.0. When used, the result will be anchorValue * multiplier + constant
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
-    public func pin<View: Pinnable>(_ dimension: DimensionAnchor, lessThanOrEqualTo view: View, padding: CGFloat = 0.0, multiplier: CGFloat = 1.0) -> NSLayoutConstraint {
+    func pin<View: Pinnable>(_ dimension: DimensionAnchor, lessThanOrEqualTo view: View, padding: CGFloat = 0.0, multiplier: CGFloat = 1.0) -> NSLayoutConstraint {
         return pin(dimension, lessThanOrEqualTo: anchor(view, for: dimension), padding: padding, multiplier: multiplier)
     }
 
@@ -494,7 +494,7 @@ public extension Pinnable where Self: Pinnable {
     ///   - multiplier: Optional multiplier with a default value of 1.0. When used, the result will be anchorValue * multiplier + constant
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
-    public func pin<View: Pinnable>(_ dimension: DimensionAnchor, greaterThanOrEqualTo view: View, padding: CGFloat = 0.0, multiplier: CGFloat = 1.0) -> NSLayoutConstraint {
+    func pin<View: Pinnable>(_ dimension: DimensionAnchor, greaterThanOrEqualTo view: View, padding: CGFloat = 0.0, multiplier: CGFloat = 1.0) -> NSLayoutConstraint {
         return pin(dimension, greaterThanOrEqualTo: anchor(view, for: dimension), padding: padding, multiplier: multiplier)
     }
 
@@ -505,7 +505,7 @@ public extension Pinnable where Self: Pinnable {
     ///   - size: Size to pin the `DimensionAnchor` to.
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
-    public func pin(_ dimension: DimensionAnchor, to size: CGFloat) -> NSLayoutConstraint {
+    func pin(_ dimension: DimensionAnchor, to size: CGFloat) -> NSLayoutConstraint {
         let constraint = anchor(self, for: dimension).constraint(equalToConstant: size)
 
         return disableTranslatesAutoresizingMaskAndActivate(constraint)
@@ -518,7 +518,7 @@ public extension Pinnable where Self: Pinnable {
     ///   - size: Size to pin the `DimensionAnchor` to.
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
-    public func pin(_ dimension: DimensionAnchor, lessThanOrEqualTo size: CGFloat) -> NSLayoutConstraint {
+    func pin(_ dimension: DimensionAnchor, lessThanOrEqualTo size: CGFloat) -> NSLayoutConstraint {
         let constraint = anchor(self, for: dimension).constraint(lessThanOrEqualToConstant: size)
 
         return disableTranslatesAutoresizingMaskAndActivate(constraint)
@@ -531,7 +531,7 @@ public extension Pinnable where Self: Pinnable {
     ///   - size: Size to pin the `DimensionAnchor` to.
     /// - Returns: The activated `NSLayoutConstraint` object that was created.
     @discardableResult
-    public func pin(_ dimension: DimensionAnchor, greaterThanOrEqualTo size: CGFloat) -> NSLayoutConstraint {
+    func pin(_ dimension: DimensionAnchor, greaterThanOrEqualTo size: CGFloat) -> NSLayoutConstraint {
         let constraint = anchor(self, for: dimension).constraint(greaterThanOrEqualToConstant: size)
 
         return disableTranslatesAutoresizingMaskAndActivate(constraint)
@@ -544,7 +544,7 @@ public extension Pinnable where Self: Pinnable {
     ///   - width: Optional width to pin the view to.
     /// - Returns: Array of activated `NSLayoutConstraint` objects that were created.
     @discardableResult
-    public func pin(height: CGFloat?, width: CGFloat?) -> [NSLayoutConstraint] {
+    func pin(height: CGFloat?, width: CGFloat?) -> [NSLayoutConstraint] {
         var constraints = [NSLayoutConstraint]()
 
         if let height = height {
@@ -564,7 +564,7 @@ public extension Pinnable where Self: Pinnable {
     ///   - width: Optional view to pin the hieght of this view to.
     /// - Returns: Array of activated `NSLayoutConstraint` objects that were created.
     @discardableResult
-    public func pin<View: Pinnable>(height: View?, width: View?) -> [NSLayoutConstraint] {
+    func pin<View: Pinnable>(height: View?, width: View?) -> [NSLayoutConstraint] {
         var constraints = [NSLayoutConstraint]()
 
         if let height = height {
